@@ -1,6 +1,6 @@
 # VSA-Reasoner
 
-**Patent Pending** | [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)]() 
+[![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)]() 
 
 Multi-hop reasoning **without Large Language Models** — using Vector-Symbolic Architecture (VSA) memory with learned neural components. **90% exact accuracy** on multi-hop queries with a **16 KB model**, CPU-only inference.
 

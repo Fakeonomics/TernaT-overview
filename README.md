@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)]() [![TernaT Site](https://img.shields.io/badge/TernaT-Live%20Site-228b22?style=for-the-badge)](https://fakeonomics.github.io/TernaT-overview/) [![GraphKAN](https://img.shields.io/badge/GraphKAN-Overview-blue?style=for-the-badge)](https://fakeonomics.github.io/graphkan-overview/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20752580.svg)](https://doi.org/10.5281/zenodo.20752580) [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)]() [![TernaT Site](https://img.shields.io/badge/TernaT-Live%20Site-228b22?style=for-the-badge)](https://fakeonomics.github.io/TernaT-overview/) [![GraphKAN](https://img.shields.io/badge/GraphKAN-Overview-blue?style=for-the-badge)](https://fakeonomics.github.io/graphkan-overview/)
 
 **TernaT Live Site** · **GraphKAN Live Site**
 

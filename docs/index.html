@@ -83,6 +83,7 @@
             -webkit-backdrop-filter: blur(24px) saturate(180%);
             box-shadow: 0 8px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.4);
+            transform-style: preserve-3d;
             transition: transform 0.1s ease-out, box-shadow 0.4s ease, background 0.4s ease;
             animation: fadeUp 0.6s ease-out both;
             overflow: hidden;
@@ -165,11 +166,11 @@
             color: #f0f4f6;
             box-shadow: 0 4px 16px rgba(0,0,0,0.25);
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.35); background: #22344a; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
         .btn-secondary {
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.25);
+            background: linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.2) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
             color: #f0f4f6;
         }
         .btn-secondary:hover { background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.12) 100%); transform: translateY(-2px); }
@@ -185,11 +186,11 @@
             padding: 28px 16px;
             text-align: center;
             border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%);
-            backdrop-filter: blur(16px) saturate(160%);
-            -webkit-backdrop-filter: blur(16px) saturate(160%);
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            background: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 100%);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.4);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(255,255,255,0.1);
             transition: all 0.3s ease;
         }
         .metric:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,0.12); background: linear-gradient(135deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.12) 100%); }
@@ -258,12 +259,15 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .section-glass:nth-child(1) { animation-delay: 0.1s; }
-        .section-glass:nth-child(2) { animation-delay: 0.2s; }
-        .section-glass:nth-child(3) { animation-delay: 0.3s; }
-        .section-glass:nth-child(4) { animation-delay: 0.4s; }
-        .section-glass:nth-child(5) { animation-delay: 0.5s; }
-        .section-glass:nth-child(6) { animation-delay: 0.6s; }
+        section:nth-of-type(1) .section-glass { animation-delay: 0.1s; }
+        section:nth-of-type(2) .section-glass { animation-delay: 0.2s; }
+        section:nth-of-type(3) .section-glass { animation-delay: 0.3s; }
+        section:nth-of-type(4) .section-glass { animation-delay: 0.4s; }
+        section:nth-of-type(5) .section-glass { animation-delay: 0.5s; }
+        section:nth-of-type(6) .section-glass { animation-delay: 0.6s; }
+        section:nth-of-type(7) .section-glass { animation-delay: 0.7s; }
+        section:nth-of-type(8) .section-glass { animation-delay: 0.8s; }
+        section:nth-of-type(9) .section-glass { animation-delay: 0.9s; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5em; }

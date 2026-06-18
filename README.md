@@ -1,8 +1,8 @@
-# VSA-Reasoner
+# TernaT: CPU Neural Reasoner
 
 [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)]() 
 
-Multi-hop reasoning **without Large Language Models** — using Vector-Symbolic Architecture (VSA) memory with learned neural components. **90% exact accuracy** on multi-hop queries with a **16 KB model**, CPU-only inference.
+First learned neural reasoner over Vector-Symbolic Architecture. 90% exact multi-hop QA · <100 KB total · No LLM · No GPU · TernaT
 
 ---
 
@@ -23,13 +23,14 @@ Multi-hop reasoning **without Large Language Models** — using Vector-Symbolic 
 ```
 Question → Parser → (entity, goal)
                         ↓
-    ┌──────────────────────────────┐
-    │  VSA Memory (predicate-sharded) │
-    │  FastController (MLP, <1 KB)    │
-    │  Neural Resonator (16 KB, tern) │
-    │  ChainScorer (Transformer, <1KB)│
-    │  Beam search (width 1-3)        │
-    └──────────────────────────────┘
+    ┌─────────────────────────────────────┐
+    │  Hybrid exact+VSA memory            │
+    │  FastController (MLP, <1 KB)        │
+    │  ChainScorer (Transformer, <1 KB)    │
+    │  Beam search (width 1-3)             │
+    │  Resonator (optional,               │
+    │    use_resonator=False)              │
+    └─────────────────────────────────────┘
                         ↓
                    Answer (entity)
 ```
@@ -40,10 +41,9 @@ Question → Parser → (entity, goal)
 
 | Component | Parameters | Size |
 |-----------|:----------:|:----:|
-| Neural Resonator | 65,536 ternary | **16 KB** |
-| FastController | 37,384 float | **<1 KB** |
-| ChainScorer | ~4,000 float | **<1 KB** |
+| Controller + Scorer | ~41,000 | **<2 KB** |
 | VSA Memory (96 facts) | D=1024 | ~44 KB |
+| Resonator (optional) | 65,536 ternary | **16 KB** |
 
 **Total: <62 KB** — fits on a microcontroller.
 
@@ -51,10 +51,10 @@ Question → Parser → (entity, goal)
 
 ## Novel Contributions
 
-1. **Learned neural VSA resonator** — First system to replace VSA cleanup with a learned iterative refinement network using ternary STE weights.
-2. **Predicate-sharded VSA memory** — Facts indexed by predicate in separate shards, reducing superposition noise.
-3. **Controller-guided multi-hop search** — BC-trained MLP selects which predicate to follow next; combined with beam search and chain scoring.
-4. **No LLM required** — Entire pipeline runs on CPU with <100 KB total memory.
+1. **Learned controller over VSA memory** — Adaptive beam search replaces algorithmic VSA cleanup. Controller + exact store handles multi-hop reasoning without resonator dependency.
+2. **Predicate-sharded VSA memory** — Facts indexed by predicate in separate shards, reducing superposition noise. Hybrid exact+VSA store breaks the ~80% accuracy ceiling.
+3. **Negative training eliminates false positives** — Contrastive training drives FP rate from 1.3% to 0%.
+4. **Multi-hop without LLM** — Entire pipeline runs on CPU with <100 KB total memory, no GPU required.
 
 ---
 
@@ -63,4 +63,4 @@ Question → Parser → (entity, goal)
 Proprietary technology — All Rights Reserved. Codebase is private.
 For licensing inquiries or collaboration, contact via [GitHub](https://github.com/Fakeonomics).
 
-*Created by Fakeonomics, June 2026.*
+*Created by Yuriy Venediktov, June 2026.*

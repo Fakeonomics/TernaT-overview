@@ -848,13 +848,17 @@ document.addEventListener('DOMContentLoaded',function(){
     entries.forEach(function(e){
       if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
     });
-  },{threshold:0.06});
-  els.forEach(function(el){obs.observe(el)});
+  },{threshold:0.06,rootMargin:'0px 0px 40px 0px'});
 
-  if(location.hash){
-    var t=document.querySelector(location.hash);
-    if(t){t.querySelectorAll('.reveal,.reveal-alt,.reveal-rotate,.title-reveal').forEach(function(e){e.classList.add('visible')})}
+  function rv(h){
+    if(!h||h==='#'||h==='')return;
+    var s=document.querySelector(h);
+    if(s){s.querySelectorAll('.reveal,.reveal-alt,.reveal-rotate,.title-reveal').forEach(function(e){e.classList.add('visible');obs.unobserve(e)})}
   }
+
+  els.forEach(function(el){obs.observe(el)});
+  if(location.hash){rv(location.hash)}
+  window.addEventListener('hashchange',function(){rv(location.hash)});
 
   var nav=document.getElementById('navbar');
   var ticking=false;

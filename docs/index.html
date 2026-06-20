@@ -851,6 +851,11 @@ document.addEventListener('DOMContentLoaded',function(){
   },{threshold:0.06});
   els.forEach(function(el){obs.observe(el)});
 
+  if(location.hash){
+    var t=document.querySelector(location.hash);
+    if(t){t.querySelectorAll('.reveal,.reveal-alt,.reveal-rotate,.title-reveal').forEach(function(e){e.classList.add('visible')})}
+  }
+
   var nav=document.getElementById('navbar');
   var ticking=false;
   window.addEventListener('scroll',function(){

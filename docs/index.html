@@ -458,7 +458,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
       <p class="section-subtitle">Combining vector-symbolic architectures with learned ternary neural networks for first-of-its-kind embedded reasoning.</p>
     </div>
     <div class="content-wrap reveal">
-      <p>We present <strong>TernaT</strong>, the first learned neural reasoner over Vector-Symbolic Architecture (VSA) using discrete ternary weights {−1, 0, +1}. Our system combines a <strong>16 KB ternary GraphKANResonator</strong>, a <strong>&lt;1 KB FastController</strong>, and a <strong>&lt;1 KB ChainScorer</strong> to achieve <strong>90% exact multi-hop QA</strong> on a synthetic benchmark of 96 facts and 30 queries — without any LLM, GPU, or floating-point hardware.</p>
+      <p>We present <strong>TernaT</strong>, the first learned neural reasoner over Vector-Symbolic Architecture (VSA) using discrete ternary weights {−1, 0, +1}. Our system combines a <strong>16 KB ternary TernMLResonator</strong>, a <strong>&lt;1 KB FastController</strong>, and a <strong>&lt;1 KB ChainScorer</strong> to achieve <strong>90% exact multi-hop QA</strong> on a synthetic benchmark of 96 facts and 30 queries — without any LLM, GPU, or floating-point hardware.</p>
       <p>The complete pipeline fits in <strong>&lt;100 KB</strong>, deployable on $0.50 microcontrollers. Key insight: VSA superposition noise (~80% ceiling) is resolved via a hybrid exact+VSA memory architecture, while negative training eliminates false positives in the learned resonator.</p>
     </div>
   </div>
@@ -510,7 +510,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
           <text x="220" y="262" text-anchor="middle" fill="#736b60" font-size="10">reduces superposition noise</text>
 
           <rect x="370" y="205" width="260" height="38" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(230,215,195,0.08)" stroke-width="1"/>
-          <text x="500" y="229" text-anchor="middle" fill="#a89e92" font-size="11">GraphKANResonator (16 KB ternary)</text>
+          <text x="500" y="229" text-anchor="middle" fill="#a89e92" font-size="11">TernMLResonator (16 KB ternary)</text>
 
           <rect x="370" y="250" width="260" height="35" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(230,215,195,0.08)" stroke-width="1"/>
           <text x="500" y="272" text-anchor="middle" fill="#a89e92" font-size="11">FastController (&lt;1 KB) + ChainScorer</text>
@@ -631,7 +631,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
             </tr>
           </thead>
           <tbody>
-            <tr><td>GraphKANResonator</td><td>65,536 ternary</td><td class="highlight">16 KB</td><td>Any MCU</td></tr>
+            <tr><td>TernMLResonator</td><td>65,536 ternary</td><td class="highlight">16 KB</td><td>Any MCU</td></tr>
             <tr><td>FastController</td><td>37,384 float</td><td class="highlight">&lt;1 KB</td><td>Any MCU</td></tr>
             <tr><td>ChainScorer</td><td>~50,000 float</td><td class="highlight">&lt;1 KB</td><td>Any MCU</td></tr>
             <tr><td>VSA Memory (96 facts)</td><td>D=1024</td><td>~44 KB</td><td>Cortex-M4+</td></tr>
@@ -743,7 +743,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
     <div class="section-header reveal">
       <div class="section-label">Hardware</div>
       <h2 class="section-title title-reveal">Hardware Efficiency</h2>
-      <p class="section-subtitle">Combined with GraphKAN for perception: 38 KB total for a complete AI pipeline.</p>
+      <p class="section-subtitle">Combined with TernML for perception: 38 KB total for a complete AI pipeline.</p>
     </div>
     <div class="content-wrap reveal">
       <div class="svg-wrap">
@@ -771,7 +771,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
           <text x="360" y="178" text-anchor="middle" fill="#a89e92" font-size="10">Deployment: Cortex-M0+ ($0.50) · ESP32-S3 · RISC-V GD32V · Smartwatch DSP · Arduino RP2040</text>
         </svg>
       </div>
-      <div class="svg-label">Combined with GraphKAN for perception: 38 KB total for a complete AI pipeline</div>
+      <div class="svg-label">Combined with TernML for perception: 38 KB total for a complete AI pipeline</div>
     </div>
   </div>
 </section>
@@ -786,10 +786,10 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
     <div class="about-wrap">
       <div class="about-text reveal">
         <p>TernaT demonstrates that learned neural reasoning over Vector-Symbolic Architectures is not only possible but practical — achieving 90% exact multi-hop QA with a &lt;100 KB pipeline deployable on $0.50 microcontrollers. The key insight: a hybrid exact+VSA memory architecture resolves the ~80% superposition noise ceiling inherent in pure VSA approaches, while negative training eliminates false positives in the learned resonator.</p>
-        <p>Combined with GraphKAN for perception (38 KB), TernaT forms the backbone of a complete on-device AI pipeline that requires no LLM, no GPU, and no floating-point hardware.</p>
+        <p>Combined with TernML for perception (38 KB), TernaT forms the backbone of a complete on-device AI pipeline that requires no LLM, no GPU, and no floating-point hardware.</p>
         <div class="about-links">
           <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="btn btn-secondary">GitHub <i class="ph ph-arrow-right"></i></a>
-          <a href="https://fakeonomics.github.io/graphkan-overview/" target="_blank" rel="noopener" class="btn btn-secondary">GraphKAN Site <i class="ph ph-arrow-right"></i></a>
+          <a href="https://fakeonomics.github.io/TernaT-overview/" target="_blank" rel="noopener" class="btn btn-secondary">TernML Site <i class="ph ph-arrow-right"></i></a>
           <a href="https://doi.org/10.5281/zenodo.20752580" target="_blank" rel="noopener" class="btn btn-secondary">Zenodo DOI <i class="ph ph-arrow-right"></i></a>
         </div>
       </div>
@@ -798,7 +798,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
           <div class="author-avatar">YV</div>
           <div class="author-info">
             <p class="name">Yuri Venediktov (Fakeonomics)</p>
-            <p class="detail">Independent researcher. Creator of TernaT and GraphKAN.</p>
+            <p class="detail">Independent researcher. Creator of TernaT and TernML.</p>
             <p class="detail"><a href="https://github.com/Fakeonomics">github.com/Fakeonomics</a></p>
           </div>
         </div>
@@ -821,8 +821,8 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
       <div class="cta-btns">
         <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="cta-btn primary-b"><span class="icon"><i class="ph ph-github-logo"></i></span> GitHub</a>
         <a href="https://doi.org/10.5281/zenodo.20752580" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon"><i class="ph ph-link"></i></span> DOI</a>
-        <a href="https://github.com/Fakeonomics/graphkan-overview" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon"><i class="ph ph-graph"></i></span> GraphKAN</a>
-        <a href="https://fakeonomics.github.io/graphkan-overview/" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon"><i class="ph ph-arrows-out-cardinal"></i></span> GraphKAN Site</a>
+        <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon"><i class="ph ph-graph"></i></span> TernML</a>
+        <a href="https://fakeonomics.github.io/TernaT-overview/" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon"><i class="ph ph-arrows-out-cardinal"></i></span> TernML Site</a>
       </div>
     </div>
   </div>
@@ -832,12 +832,12 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   <div class="container">
     <div class="footer-links">
       <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/Fakeonomics/graphkan-overview" target="_blank" rel="noopener">GraphKAN</a>
-      <a href="https://fakeonomics.github.io/graphkan-overview/" target="_blank" rel="noopener">GraphKAN Site</a>
+      <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener">TernML</a>
+      <a href="https://fakeonomics.github.io/TernaT-overview/" target="_blank" rel="noopener">TernML Site</a>
       <a href="https://doi.org/10.5281/zenodo.20752580" target="_blank" rel="noopener">DOI</a>
     </div>
     <p>Proprietary Technology &mdash; All Rights Reserved.</p>
-    <p class="legal">TernaT learned neural VSA reasoner and GraphKAN are protected by applicable intellectual property laws. Unauthorized reproduction or distribution prohibited.</p>
+    <p class="legal">TernaT learned neural VSA reasoner and TernML are protected by applicable intellectual property laws. Unauthorized reproduction or distribution prohibited.</p>
   </div>
 </footer>
 

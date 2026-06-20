@@ -1,7 +1,5 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20752580.svg)](https://doi.org/10.5281/zenodo.20752580) [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)]() [![TernaT Site](https://img.shields.io/badge/TernaT-Live%20Site-228b22?style=for-the-badge)](https://fakeonomics.github.io/TernaT-overview/) [![GraphKAN](https://img.shields.io/badge/GraphKAN-Overview-blue?style=for-the-badge)](https://fakeonomics.github.io/graphkan-overview/)
 
-**TernaT Live Site** · **GraphKAN Live Site**
-
 ---
 
 # TernaT: CPU Neural Reasoner
@@ -99,5 +97,3 @@ First learned neural VSA reasoner — all prior work is algorithmic, not learned
 Proprietary technology — All Rights Reserved.  
 Codebase is private. [Full paper](https://fakeonomics.github.io/TernaT-overview/) available.  
 For licensing inquiries, contact via GitHub.
-
-*Created by Yuriy Venediktov, June 2026.*

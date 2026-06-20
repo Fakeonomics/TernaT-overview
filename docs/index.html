@@ -360,6 +360,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   .hero-glow,.hero-bg .grain,.metric-card{animation:none!important;transition:none!important}
 }
 </style>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body>
 
@@ -373,7 +374,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
       </svg>
       TernaT
     </a>
-    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><i class="ph ph-list"></i></button>
     <ul class="nav-links">
       <li><a href="#abstract">Abstract</a></li>
       <li><a href="#architecture">Architecture</a></li>
@@ -395,13 +396,13 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   <div class="hero-glow"></div>
   <div class="container">
     <div class="reveal visible">
-      <div class="hero-badge"><span>&#9679; v1.0</span> &middot; Proprietary Technology</div>
+      <div class="hero-badge"><span><i class="ph ph-circle"></i> v1.0</span> &middot; Proprietary Technology</div>
     </div>
     <h1 class="reveal visible reveal-d1">First learned neural<br><span class="gold">reasoner on VSA</span></h1>
     <p class="sub reveal visible reveal-d2">TernaT is the first learned neural reasoner over <strong>Vector-Symbolic Architecture</strong> with <strong>ternary weights</strong> &mdash; achieving 90% exact multi-hop QA with a <strong>16 KB</strong> resonator. No LLM. No GPU. No FPU.</p>
     <div class="hero-buttons reveal visible reveal-d3">
-      <a href="#abstract" class="btn btn-primary">Read the Research &rarr;</a>
-      <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="btn btn-secondary">GitHub &rarr;</a>
+      <a href="#abstract" class="btn btn-primary">Read the Research <i class="ph ph-arrow-right"></i></a>
+      <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="btn btn-secondary">GitHub <i class="ph ph-arrow-right"></i></a>
     </div>
     <div class="hero-stats reveal visible reveal-d4">
       <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec">90%</span></div><div class="hero-stat-label">Exact Multi-Hop QA</div></div>
@@ -787,9 +788,9 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
         <p>TernaT demonstrates that learned neural reasoning over Vector-Symbolic Architectures is not only possible but practical — achieving 90% exact multi-hop QA with a &lt;100 KB pipeline deployable on $0.50 microcontrollers. The key insight: a hybrid exact+VSA memory architecture resolves the ~80% superposition noise ceiling inherent in pure VSA approaches, while negative training eliminates false positives in the learned resonator.</p>
         <p>Combined with GraphKAN for perception (38 KB), TernaT forms the backbone of a complete on-device AI pipeline that requires no LLM, no GPU, and no floating-point hardware.</p>
         <div class="about-links">
-          <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="btn btn-secondary">GitHub &rarr;</a>
-          <a href="https://fakeonomics.github.io/graphkan-overview/" target="_blank" rel="noopener" class="btn btn-secondary">GraphKAN Site &rarr;</a>
-          <a href="https://doi.org/10.5281/zenodo.20752580" target="_blank" rel="noopener" class="btn btn-secondary">Zenodo DOI &rarr;</a>
+          <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="btn btn-secondary">GitHub <i class="ph ph-arrow-right"></i></a>
+          <a href="https://fakeonomics.github.io/graphkan-overview/" target="_blank" rel="noopener" class="btn btn-secondary">GraphKAN Site <i class="ph ph-arrow-right"></i></a>
+          <a href="https://doi.org/10.5281/zenodo.20752580" target="_blank" rel="noopener" class="btn btn-secondary">Zenodo DOI <i class="ph ph-arrow-right"></i></a>
         </div>
       </div>
       <div>
@@ -802,10 +803,10 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
           </div>
         </div>
         <div class="about-badges reveal reveal-d2">
-          <div class="about-badge"><span class="icon">&#9670;</span> Independent research</div>
-          <div class="about-badge"><span class="icon">&#9651;</span> First learned VSA reasoner</div>
-          <div class="about-badge"><span class="icon">&#10010;</span> No LLM / No GPU / No FPU</div>
-          <div class="about-badge"><span class="icon">&#9655;</span> &lt;100 KB total pipeline</div>
+          <div class="about-badge"><span class="icon"><i class="ph ph-flask"></i></span> Independent research</div>
+          <div class="about-badge"><span class="icon"><i class="ph ph-target"></i></span> First learned VSA reasoner</div>
+          <div class="about-badge"><span class="icon"><i class="ph ph-microchip"></i></span> No LLM / No GPU / No FPU</div>
+          <div class="about-badge"><span class="icon"><i class="ph ph-lightning"></i></span> &lt;100 KB total pipeline</div>
         </div>
       </div>
     </div>
@@ -818,10 +819,10 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
       <h2>Explore the research.</h2>
       <p>TernaT is proprietary technology. Learn more on GitHub or read the DOI publication.</p>
       <div class="cta-btns">
-        <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="cta-btn primary-b"><span class="icon">&#9670;</span> GitHub</a>
-        <a href="https://doi.org/10.5281/zenodo.20752580" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon">&#9670;</span> DOI</a>
-        <a href="https://github.com/Fakeonomics/graphkan-overview" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon">&#9670;</span> GraphKAN</a>
-        <a href="https://fakeonomics.github.io/graphkan-overview/" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon">&#9670;</span> GraphKAN Site</a>
+        <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="cta-btn primary-b"><span class="icon"><i class="ph ph-github-logo"></i></span> GitHub</a>
+        <a href="https://doi.org/10.5281/zenodo.20752580" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon"><i class="ph ph-link"></i></span> DOI</a>
+        <a href="https://github.com/Fakeonomics/graphkan-overview" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon"><i class="ph ph-graph"></i></span> GraphKAN</a>
+        <a href="https://fakeonomics.github.io/graphkan-overview/" target="_blank" rel="noopener" class="cta-btn ghost"><span class="icon"><i class="ph ph-arrows-out-cardinal"></i></span> GraphKAN Site</a>
       </div>
     </div>
   </div>

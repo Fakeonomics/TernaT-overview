@@ -62,14 +62,14 @@ img{max-width:100%}
   font-size:17px;color:var(--text-dim);max-width:520px;line-height:1.6;
   font-weight:400;
 }
-.reveal{clip-path:inset(0 0 100% 0);transform:perspective(800px) rotateX(4deg) translateY(24px);opacity:.01;transition:clip-path 1.2s cubic-bezier(.77,0,.175,1),transform 1.2s cubic-bezier(.77,0,.175,1),opacity .5s ease;will-change:clip-path,transform}
-.reveal.visible{clip-path:inset(0);transform:perspective(800px) rotateX(0) translateY(0);opacity:1}
-.reveal-alt{clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);transform:perspective(800px) rotateY(-3deg) translateY(20px);opacity:.01;transition:clip-path 1.2s cubic-bezier(.77,0,.175,1),transform 1.2s cubic-bezier(.77,0,.175,1),opacity .5s ease}
-.reveal-alt.visible{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);transform:perspective(800px) rotateY(0) translateY(0);opacity:1}
-.reveal-rotate{clip-path:inset(0 0 100% 0);transform:perspective(600px) rotateX(2deg) rotateY(-2deg) translateY(24px);transition:clip-path 1s cubic-bezier(.65,0,.35,1),transform 1s cubic-bezier(.65,0,.35,1)}
-.reveal-rotate.visible{clip-path:inset(0);transform:perspective(600px) rotateX(0) rotateY(0) translateY(0)}
-.title-reveal{background:linear-gradient(90deg,var(--text),var(--text) 40%,var(--gold));background-clip:text;-webkit-background-clip:text;color:transparent;background-size:0% 100%;background-repeat:no-repeat;transition:background-size 1.5s cubic-bezier(.77,0,.175,1)}
-.title-reveal.visible{background-size:100% 100%}
+.reveal{transform:perspective(800px) rotateX(4deg) translateY(24px);opacity:.7;transition:transform 1.2s cubic-bezier(.77,0,.175,1),opacity .8s ease;will-change:transform}
+.reveal.visible{transform:perspective(800px) rotateX(0) translateY(0);opacity:1}
+.reveal-alt{transform:perspective(800px) rotateY(-3deg) translateY(20px);opacity:.7;transition:transform 1.2s cubic-bezier(.77,0,.175,1),opacity .8s ease}
+.reveal-alt.visible{transform:perspective(800px) rotateY(0) translateY(0);opacity:1}
+.reveal-rotate{transform:perspective(600px) rotateX(2deg) rotateY(-2deg) translateY(24px);opacity:.85;transition:transform 1s cubic-bezier(.65,0,.35,1),opacity .7s ease}
+.reveal-rotate.visible{transform:perspective(600px) rotateX(0) rotateY(0) translateY(0);opacity:1}
+.title-reveal{color:var(--text);transition:color 1.2s cubic-bezier(.77,0,.175,1)}
+.title-reveal.visible{color:var(--gold-light)}
 .reveal-d1{transition-delay:.06s}
 .reveal-d2{transition-delay:.14s}
 .reveal-d3{transition-delay:.22s}
@@ -355,8 +355,8 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   .about-badges{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
-  .reveal,.reveal-alt,.reveal-rotate,.reveal.visible,.reveal-alt.visible,.reveal-rotate.visible{clip-path:inset(0)!important;transform:none!important;opacity:1!important;transition:none!important}
-  .title-reveal,.title-reveal.visible{background-size:100% 100%!important;color:var(--text)!important;background-clip:unset!important;-webkit-background-clip:unset!important;transition:none!important}
+  .reveal,.reveal-alt,.reveal-rotate,.reveal.visible,.reveal-alt.visible,.reveal-rotate.visible{transform:none!important;opacity:1!important;transition:none!important}
+  .title-reveal,.title-reveal.visible{color:var(--text)!important;transition:none!important}
   .hero-glow,.hero-bg .grain,.metric-card{animation:none!important;transition:none!important}
 }
 </style>

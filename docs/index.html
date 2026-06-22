@@ -893,10 +893,12 @@ function setLang(lang) {
     for (var i = 0; i < els.length; i++) {
       var el = els[i];
       var key = el.getAttribute('data-i18n');
-      if (i18nData[lang] && i18nData[lang][key] !== undefined) {
-        el.innerHTML = i18nData[lang][key];
-      } else if (i18nData.en && i18nData.en[key] !== undefined) {
-        el.innerHTML = i18nData.en[key];
+      var t = (i18nData[lang] && i18nData[lang][key] !== undefined) ? i18nData[lang][key] : (i18nData.en && i18nData.en[key] !== undefined ? i18nData.en[key] : null);
+      if (t === null) continue;
+      if (el.namespaceURI === 'http://www.w3.org/2000/svg') {
+        el.textContent = t.replace(/<br\s*\/?>/gi, ' ');
+      } else {
+        el.innerHTML = t;
       }
     }
     var btns = document.querySelectorAll('.lang-dropdown button');

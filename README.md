@@ -30,7 +30,8 @@ TernaT introduces a **learned neural pipeline** for multi-hop question answering
 ## Architecture
 
 ```
-Question (NL) → NL Parser → (entity, predicate)
+Question (NL) → NL Parser v2 → (entity, predicate)
+                    (hybrid regex+neural, 50+ patterns)
                                   ↓
                     ┌─ PredicateShardedStore (VSA memory, D=1024)
                     │   Facts sharded by predicate

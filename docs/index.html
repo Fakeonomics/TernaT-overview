@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="TernaT — AI that reasons over facts. No LLM. No GPU. Fits on a $0.50 chip.">
+<meta property="og:title" content="TernaT: Neural VSA Reasoner">
+<meta property="og:description" content="A learned neural reasoner over Vector-Symbolic Architecture. 90% exact multi-hop QA, 16 KB ternary resonator. No LLM, no GPU.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fakeonomics.github.io/TernaT-overview/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c9954a'/%3E%3Ctext x='16' y='23' text-anchor='middle' fill='%230c0b09' font-size='20' font-weight='800' font-family='Inter,sans-serif'%3ET%3C/text%3E%3C/svg%3E">
 <title>TernaT — AI that reasons over facts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -338,6 +344,57 @@ footer a:hover{color:var(--gold)}
 .footer-links a:last-child::after{display:none}
 footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height:1.5;max-width:520px;opacity:.7}
 
+/* === SCROLL PROGRESS === */
+#scrollProgress{position:fixed;top:0;left:0;width:0;height:3px;z-index:10001;background:linear-gradient(90deg,#00d4ff,#7b2ff7);transition:none}
+/* === SCROLL TO TOP === */
+#scrollTopBtn{position:fixed;bottom:32px;right:32px;z-index:10000;width:44px;height:44px;border-radius:50%;background:rgba(201,149,74,.15);border:1px solid rgba(201,149,74,.25);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px);transition:opacity .35s,transform .35s,background .3s;pointer-events:none;backdrop-filter:blur(8px);}
+#scrollTopBtn.show{opacity:1;transform:translateY(0);pointer-events:auto}
+#scrollTopBtn:hover{background:rgba(201,149,74,.25);border-color:var(--gold)}
+#scrollTopBtn svg{width:20px;height:20px}
+/* === SCROLL-SPY NAV === */
+.nav-links a.active{color:var(--gold)!important}
+.nav-links a.active::after{width:100%!important;background:var(--gold)!important;box-shadow:0 0 8px var(--gold-glow)}
+/* === PARTICLE CANVAS === */
+#particleCanvas{position:absolute;inset:0;z-index:0;pointer-events:none;display:block}
+/* === SMOOTH SECTION TRANSITIONS === */
+.section-fade{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.section-fade.visible{opacity:1;transform:translateY(0)}
+.section-fade-in{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.22,1,.36,1) .1s,transform .6s cubic-bezier(.22,1,.36,1) .1s}
+.section-fade-in.visible{opacity:1;transform:translateY(0)}
+/* === 3D TILT CARDS === */
+.tilt-card{transform-style:preserve-3d;transition:transform .3s ease}
+/* === ANIMATED COUNTERS === */
+.count-num{display:inline-block}
+/* === PAPERS SECTION === */
+.papers-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.paper-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:border-color .35s,background .35s,transform .35s;clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.paper-card:hover{border-color:var(--gold);background:var(--bg-card-hover);transform:translateY(-2px)}
+.paper-card h4{font-size:16px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em;color:var(--text)}
+.paper-card .doi{font-size:12px;color:var(--text-dimmer);font-family:var(--font-mono);margin-bottom:12px;word-break:break-all}
+.paper-card p{font-size:13.5px;color:var(--text-dim);line-height:1.6;margin-bottom:14px}
+.paper-card .paper-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--gold);padding:7px 16px;border:1px solid rgba(201,149,74,.2);border-radius:6px;transition:all .25s}
+.paper-card .paper-link:hover{background:rgba(201,149,74,.08);border-color:var(--gold)}
+.paper-card .restricted-note{font-size:11.5px;color:var(--text-dimmer);margin-top:6px;font-style:italic}
+.paper-embed{margin-top:36px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--bg-card)}
+.paper-embed iframe{width:100%;height:420px;border:none;display:block}
+/* === SVG PIPELINE INTERACTIVE === */
+.pipeline-block{cursor:pointer;transition:filter .3s,opacity .3s}
+.pipeline-block:hover{filter:brightness(1.2)}
+.pipeline-block.active{filter:brightness(1.3)}
+.pipeline-tooltip{position:absolute;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--text-dim);max-width:220px;pointer-events:none;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0;transition:opacity .25s}
+.pipeline-tooltip.show{opacity:1}
+@keyframes pulse-block{0%,100%{opacity:1}50%{opacity:.7}}
+/* === POPUP OVERLAY === */
+.popup-overlay{position:fixed;inset:0;z-index:20000;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
+.popup-overlay.show{opacity:1;pointer-events:auto}
+.popup-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;max-width:420px;width:90%;position:relative}
+.popup-box h4{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--gold)}
+.popup-box p{font-size:14px;color:var(--text-dim);line-height:1.7}
+.popup-close{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--text-dimmer);cursor:pointer;font-size:20px;padding:4px;transition:color .2s}
+.popup-close:hover{color:var(--text)}
+/* === PIPELINE FLOW ANIMATION === */
+.flow-pulse{animation:pulse-block 2s ease-in-out infinite}
+
 /* === ANIMATIONS === */
 @keyframes breathe{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.6;transform:scale(1.05)}}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
@@ -379,9 +436,11 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   .hero-glow{animation:none!important}
 }
 </style>
-<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1?v=20260622"></script>
 </head>
 <body>
+
+<div id="scrollProgress"></div>
 
 <nav id="navbar">
   <div class="container">
@@ -420,11 +479,12 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
 <!-- I18N CONTAINER WRAP -->
 <div id="i18nRoot" class="i18n-container">
 
-<section class="hero" id="hero">
+<section class="hero section-fade visible" id="hero">
   <div class="hero-bg">
     <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" loading="eager">
     <div class="overlay"></div>
     <div class="grain"></div>
+    <canvas id="particleCanvas"></canvas>
   </div>
   <div class="hero-glow"></div>
   <div class="container">
@@ -438,15 +498,15 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
       <a href="https://github.com/Fakeonomics/TernaT-overview" target="_blank" rel="noopener" class="btn btn-secondary"><span data-i18n="hero.btn.github">GitHub</span> <i class="ph ph-arrow-right"></i></a>
     </div>
     <div class="hero-stats reveal visible reveal-d4">
-      <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec">90%</span></div><div class="hero-stat-label"><span data-i18n="stats.qa">Exact Multi-Hop QA</span></div></div>
-      <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec">16 KB</span></div><div class="hero-stat-label"><span data-i18n="stats.resonator">Ternary Resonator</span></div></div>
-      <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec">100%</span></div><div class="hero-stat-label"><span data-i18n="stats.accuracy">1 &amp; 2-Hop Accuracy</span></div></div>
-      <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec">&lt;100 KB</span></div><div class="hero-stat-label"><span data-i18n="stats.pipeline">Total Pipeline</span></div></div>
+      <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec count-num" data-count="90" data-suffix="%">90%</span></div><div class="hero-stat-label"><span data-i18n="stats.qa">Exact Multi-Hop QA</span></div></div>
+      <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec count-num" data-count="16" data-suffix=" KB">16 KB</span></div><div class="hero-stat-label"><span data-i18n="stats.resonator">Ternary Resonator</span></div></div>
+      <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec count-num" data-count="100" data-suffix="%">100%</span></div><div class="hero-stat-label"><span data-i18n="stats.accuracy">1 &amp; 2-Hop Accuracy</span></div></div>
+      <div class="hero-stat"><div class="hero-stat-value"><span class="num-spec count-num" data-count="100" data-prefix="&lt;" data-suffix=" KB">&lt;100 KB</span></div><div class="hero-stat-label"><span data-i18n="stats.pipeline">Total Pipeline</span></div></div>
     </div>
   </div>
 </section>
 
-<section class="section" id="metrics">
+<section class="section section-fade" id="metrics">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label"><span data-i18n="metrics.label">Key Metrics</span></div>
@@ -454,28 +514,28 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
       <p class="section-subtitle"><span data-i18n="metrics.sub">The first learned neural reasoner that works without a language model &#8212; delivering multi-hop reasoning at microcontroller cost.</span></p>
     </div>
     <div class="metrics-grid">
-      <div class="metric-card reveal reveal-d1">
-        <div class="metric-value">90%</div>
+      <div class="metric-card reveal reveal-d1 tilt-card">
+        <div class="metric-value"><span class="count-num" data-count="90" data-suffix="%">90%</span></div>
         <div class="metric-label"><span data-i18n="metrics.card1.label">Exact Multi-Hop QA</span></div>
         <div class="metric-desc"><span data-i18n="metrics.card1.desc">First learned neural reasoner to break through the accuracy ceiling of traditional VSA methods</span></div>
       </div>
-      <div class="metric-card reveal reveal-d2">
-        <div class="metric-value">16 KB</div>
+      <div class="metric-card reveal reveal-d2 tilt-card">
+        <div class="metric-value"><span class="count-num" data-count="16" data-suffix=" KB">16 KB</span></div>
         <div class="metric-label"><span data-i18n="metrics.card2.label">Ternary Resonator</span></div>
         <div class="metric-desc"><span data-i18n="metrics.card2.desc">Learned pattern matcher &#8212; replaces slow brute-force search</span></div>
       </div>
-      <div class="metric-card reveal reveal-d3">
-        <div class="metric-value">100%</div>
+      <div class="metric-card reveal reveal-d3 tilt-card">
+        <div class="metric-value"><span class="count-num" data-count="100" data-suffix="%">100%</span></div>
         <div class="metric-label"><span data-i18n="metrics.card3.label">1 &amp; 2-Hop Accuracy</span></div>
         <div class="metric-desc"><span data-i18n="metrics.card3.desc">Perfect precision on single and double inference steps</span></div>
       </div>
-      <div class="metric-card reveal reveal-d2">
-        <div class="metric-value">&lt;100 KB</div>
+      <div class="metric-card reveal reveal-d2 tilt-card">
+        <div class="metric-value"><span class="count-num" data-count="100" data-prefix="&lt;" data-suffix=" KB">&lt;100 KB</span></div>
         <div class="metric-label"><span data-i18n="metrics.card4.label">Total Pipeline</span></div>
         <div class="metric-desc"><span data-i18n="metrics.card4.desc">Resonator + Controller + Scorer + VSA memory (~1.1 MB int8)</span></div>
       </div>
-      <div class="metric-card reveal reveal-d3">
-        <div class="metric-value">0</div>
+      <div class="metric-card reveal reveal-d3 tilt-card">
+        <div class="metric-value"><span class="count-num" data-count="0">0</span></div>
         <div class="metric-label"><span data-i18n="metrics.card5.label">FPU / GPU Required</span></div>
         <div class="metric-desc"><span data-i18n="metrics.card5.desc">Runs on $0.50 Cortex-M0+ MCUs</span></div>
       </div>
@@ -483,7 +543,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   </div>
 </section>
 
-<section class="section" id="abstract">
+<section class="section section-fade" id="abstract">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label"><span data-i18n="abstract.label">Abstract</span></div>
@@ -497,7 +557,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   </div>
 </section>
 
-<section class="section" id="architecture">
+<section class="section section-fade" id="architecture">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label"><span data-i18n="arch.label">Architecture</span></div>
@@ -556,7 +616,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   </div>
 </section>
 
-<section class="section" id="results">
+<section class="section section-fade" id="results">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label"><span data-i18n="results.label">Results</span></div>
@@ -644,11 +704,11 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
             </tr>
           </thead>
           <tbody>
-            <tr><td><span data-i18n="results.comp.res">TernMLResonator</span></td><td>65,536 ternary</td><td class="highlight">16 KB</td><td><span data-i18n="results.comp.any">Any MCU</span></td></tr>
-            <tr><td><span data-i18n="results.comp.ctrl">FastController</span></td><td>624,264 int8</td><td class="highlight">~610 KB</td><td><span data-i18n="results.comp.m7">Cortex-M7+</span></td></tr>
-            <tr><td><span data-i18n="results.comp.scorer">ChainScorer</span></td><td>471,553 int8</td><td class="highlight">~461 KB</td><td><span data-i18n="results.comp.m7">Cortex-M7+</span></td></tr>
-            <tr><td><span data-i18n="results.comp.vsa">VSA Memory (96 facts)</span></td><td>D=1024</td><td>~44 KB</td><td><span data-i18n="results.comp.m4">Cortex-M4+</span></td></tr>
-            <tr><td><strong><span data-i18n="results.comp.total">Total pipeline</span></strong></td><td></td><td class="highlight"><strong>&lt;100 KB</strong></td><td><strong><span data-i18n="results.comp.dollar">$0.50 MCUs</span></strong></td></tr>
+            <tr><td><span data-i18n="results.comp.res">TernMLResonator</span></td><td>65,536 ternary</td><td class="highlight"><span class="count-num" data-count="16" data-suffix=" KB">16 KB</span></td><td><span data-i18n="results.comp.any">Any MCU</span></td></tr>
+            <tr><td><span data-i18n="results.comp.ctrl">FastController</span></td><td><span class="count-num" data-count="624" data-suffix=",264 int8">624,264 int8</span></td><td class="highlight"><span class="count-num" data-count="610" data-prefix="~" data-suffix=" KB">~610 KB</span></td><td><span data-i18n="results.comp.m7">Cortex-M7+</span></td></tr>
+            <tr><td><span data-i18n="results.comp.scorer">ChainScorer</span></td><td><span class="count-num" data-count="471" data-suffix=",553 int8">471,553 int8</span></td><td class="highlight"><span class="count-num" data-count="461" data-prefix="~" data-suffix=" KB">~461 KB</span></td><td><span data-i18n="results.comp.m7">Cortex-M7+</span></td></tr>
+            <tr><td><span data-i18n="results.comp.vsa">VSA Memory (96 facts)</span></td><td>D=1024</td><td><span class="count-num" data-count="44" data-prefix="~" data-suffix=" KB">~44 KB</span></td><td><span data-i18n="results.comp.m4">Cortex-M4+</span></td></tr>
+            <tr><td><strong><span data-i18n="results.comp.total">Total pipeline</span></strong></td><td></td><td class="highlight"><strong><span class="count-num" data-count="100" data-prefix="&lt;" data-suffix=" KB">&lt;100 KB</span></strong></td><td><strong><span data-i18n="results.comp.dollar">$0.50 MCUs</span></strong></td></tr>
           </tbody>
         </table>
       </div>
@@ -656,7 +716,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   </div>
 </section>
 
-<section class="section" id="breakthroughs">
+<section class="section section-fade" id="breakthroughs">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label"><span data-i18n="bt.label">Breakthroughs</span></div>
@@ -701,7 +761,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   </div>
 </section>
 
-<section class="section" id="comparison">
+<section class="section section-fade" id="comparison">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label"><span data-i18n="comp.label">Comparison</span></div>
@@ -751,7 +811,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   </div>
 </section>
 
-<section class="section" id="hardware">
+<section class="section section-fade" id="hardware">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label"><span data-i18n="hw.label">Hardware</span></div>
@@ -786,7 +846,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   </div>
 </section>
 
-<section class="section" id="about">
+<section class="section section-fade" id="about">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-label"><span data-i18n="about.label">About</span></div>
@@ -825,7 +885,35 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
   </div>
 </section>
 
-<section class="section">
+<section class="section section-fade" id="papers">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label"><span data-i18n="papers.label">Papers</span></div>
+      <h2 class="section-title title-reveal"><span data-i18n="papers.title">Research Papers</span></h2>
+      <p class="section-subtitle"><span data-i18n="papers.sub">Publications on Zenodo — open access papers, restricted code repository.</span></p>
+    </div>
+    <div class="papers-wrap reveal">
+      <div class="paper-card tilt-card">
+        <h4><span data-i18n="papers.paper1">TernaT: Learned Neural VSA Reasoner</span></h4>
+        <div class="doi">10.5281/zenodo.20752580</div>
+        <p><span data-i18n="papers.paper1.desc">The first learned neural reasoner over Vector-Symbolic Architecture. 90% exact multi-hop QA, 16 KB ternary resonator, no LLM or GPU required.</span></p>
+        <a href="https://doi.org/10.5281/zenodo.20752580" target="_blank" rel="noopener" class="paper-link"><i class="ph ph-download-simple"></i> <span data-i18n="papers.download">Download Paper</span></a>
+      </div>
+      <div class="paper-card tilt-card">
+        <h4><span data-i18n="papers.paper2">TernML + TernaT Code Repository</span></h4>
+        <div class="doi">10.5281/zenodo.20778118</div>
+        <p><span data-i18n="papers.code.desc">Complete codebase for TernML multi-architecture ternary framework and TernaT neural reasoner. Includes training, inference, and C codegen for Cortex-M0+.</span></p>
+        <a href="https://doi.org/10.5281/zenodo.20778118" target="_blank" rel="noopener" class="paper-link"><i class="ph ph-lock"></i> <span data-i18n="papers.code">Source Code</span></a>
+        <div class="restricted-note"><span data-i18n="papers.code.note">Restricted access — proprietary technology.</span></div>
+      </div>
+    </div>
+    <div class="paper-embed reveal">
+      <iframe src="https://zenodo.org/record/20752580" title="TernaT paper on Zenodo" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section section-fade">
   <div class="container">
     <div class="cta-block reveal">
       <h2><span data-i18n="cta.title">Explore the research.</span></h2>
@@ -855,19 +943,25 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
 
 </div><!-- /i18nRoot -->
 
+<button id="scrollTopBtn" aria-label="Scroll to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<div class="popup-overlay" id="popupOverlay"><div class="popup-box"><button class="popup-close" onclick="closePopup()">&times;</button><h4 id="popupTitle"></h4><p id="popupDesc"></p></div></div>
+
 <script>
 var i18nLang = 'en';
-var i18nData = {  en: { "nav.abstract":"Abstract","nav.architecture":"Architecture","nav.results":"Results","nav.breakthroughs":"Breakthroughs","nav.hardware":"Hardware","nav.about":"About","nav.github":"GitHub","lang.btn":"EN \u25BE","hero.badge.v":"v1.0","hero.badge.tag":"Proprietary Technology","hero.title.1":"AI that reasons","hero.title.2":"over facts","hero.sub":"TernaT is the first learned neural reasoner that answers complex questions by chaining facts \u2014 with a <strong>90% success rate<\/strong> and a <strong>16 KB<\/strong> brain. No LLM. No GPU. No FPU. Fits on a <strong>$0.50 chip<\/strong>.","hero.btn.research":"Read the Research","hero.btn.github":"GitHub","stats.qa":"Exact Multi-Hop QA","stats.resonator":"Ternary Resonator","stats.accuracy":"1 &amp; 2-Hop Accuracy","stats.pipeline":"Total Pipeline","metrics.label":"Key Metrics","metrics.title":"Reasoning without an LLM.<br>Fits on any MCU.","metrics.sub":"The first learned neural reasoner that works without a language model \u2014 delivering multi-hop reasoning at microcontroller cost.","metrics.card1.label":"Exact Multi-Hop QA","metrics.card1.desc":"First learned neural reasoner to break through the accuracy ceiling of traditional VSA methods","metrics.card2.label":"Ternary Resonator","metrics.card2.desc":"Learned pattern matcher \u2014 replaces slow brute-force search","metrics.card3.label":"1 &amp; 2-Hop Accuracy","metrics.card3.desc":"Perfect precision on single and double inference steps","metrics.card4.label":"Total Pipeline","metrics.card4.desc":"Resonator + Controller + Scorer + VSA memory (~1.1 MB int8)","metrics.card5.label":"FPU / GPU Required","metrics.card5.desc":"Runs on $0.50 Cortex-M0+ MCUs","abstract.label":"Abstract","abstract.title":"Neural reasoning at<br>microcontroller scale.","abstract.sub":"A new approach to on-device AI that answers multi-step questions without a language model or GPU.","abstract.p1":"We present <strong>TernaT<\/strong>, the first learned neural reasoner that uses compact ternary weights to answer multi-step questions. Our system achieves <strong>90% exact multi-hop QA<\/strong> on a benchmark of 96 facts and 30 queries \u2014 without any LLM, GPU, or FPU.","abstract.p2":"Complete pipeline fits in <strong>&lt;100 KB<\/strong>. Hybrid exact+VSA memory resolves the accuracy ceiling, while counterexample training eliminates incorrect matches \u2014 achieving 0% false positives.","arch.label":"Architecture","arch.title":"Pipeline Architecture","arch.sub":"Hybrid exact+VSA memory with learned ternary components.","arch.caption":"TernaT Pipeline: hybrid exact+VSA memory with learned ternary components","results.label":"Results","results.title":"Multi-Hop QA Results","results.sub":"90% exact match \u2014 1-hop 100%, 2-hop 100%, 3-hop 70%.","results.caption":"Full system achieves 90% exact match","results.comp.title":"Component Sizes","results.comp.col.component":"Component","results.comp.col.params":"Parameters","results.comp.col.size":"Size","results.comp.col.deploy":"Deployment","results.comp.res":"TernMLResonator","results.comp.any":"Any MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA Memory","results.comp.m4":"Cortex-M4+","results.comp.total":"Total pipeline","results.comp.dollar":"$0.50 MCUs","bt.label":"Breakthroughs","bt.title":"Key Breakthroughs","bt.sub":"Four fundamental contributions.","bt.caption":"Four contributions in <100 KB","comp.label":"Comparison","comp.title":"Comparison with Prior Art","comp.sub":"First learned neural VSA reasoner.","hw.label":"Hardware","hw.title":"Hardware Efficiency","hw.sub":"38 KB for a complete AI pipeline with TernML.","hw.caption":"38 KB for a complete AI pipeline","about.label":"About","about.title":"Independent research.<br>Proprietary technology.","about.sub":"TernaT is an independent research project.","about.p1":"TernaT proves learned neural reasoning over facts is practical \u2014 achieving 90% exact multi-hop QA with a <100 KB pipeline on $0.50 microcontrollers. The NL parser understands plain English, including multi-word entities like Eiffel Tower.","about.p2":"Combined with TernML for perception (38 KB), TernaT forms a complete on-device AI pipeline with no LLM, no GPU, no FPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML Site","about.btn.doi":"Zenodo DOI","about.author.detail":"Independent researcher. Creator of TernaT and TernML.","about.badge.research":"Independent research","about.badge.first":"First learned VSA reasoner","about.badge.nohw":"No LLM / No GPU / No FPU","about.badge.size":"<100 KB total pipeline","about.badge.nl":"Hybrid NL parser (multi-word, 99.9%)","about.badge.vision":"Vision integration","cta.title":"Explore the research.","cta.sub":"TernaT is proprietary technology.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML Site","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML Site","footer.doi":"DOI","footer.rights":"Proprietary Technology \u2014 All Rights Reserved.","footer.legal":"TernaT and TernML are protected by applicable intellectual property laws.","svg.arch.question":"Question","svg.arch.nl":"NL Parser v2 (50+ patterns, neural, multi-word)","svg.arch.entpred":"entity + predicate","svg.arch.hybrid":"Hybrid Memory: exact dict + VSA fallback","svg.arch.store":"PredicateShardedStore","svg.arch.store2":"VSA memory by predicate","svg.arch.store3":"reduces interference","svg.arch.res":"TernMLResonator (16 KB)","svg.arch.ctrl":"FastController + ChainScorer","svg.arch.beam":"Beam search","svg.arch.answer":"Answer","svg.res.method":"Method","svg.res.overall":"Overall","svg.res.hop1":"1-hop","svg.res.hop2":"2-hop","svg.res.hop3":"3-hop","svg.res.vsa":"VSA direct query","svg.res.resonly":"Resonator only","svg.res.ctrlres":"Controller + Resonator","svg.res.ternaT":"TernaT (full)","svg.res.note":"96 facts, 30 queries","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Resonator","svg.res.lbl.ctrlres":"Ctrl+Res","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. Learned VSA Resonator","svg.bt.1.l1":"First learned cleanup","svg.bt.1.l2":"16 KB, 1.1ms","svg.bt.1.l3":"77s -> 1.1ms","svg.bt.2.title":"2. No False Positives","svg.bt.2.l1":"Counterexample training","svg.bt.2.l2":"1.3% -> 0%","svg.bt.2.l3":"zero false positives","svg.bt.3.title":"3. Multi-hop No LLM","svg.bt.3.l1":"Controller + beam search","svg.bt.3.l2":"90% exact","svg.bt.3.l3":"100/100/70%","svg.bt.4.title":"4. Hybrid Memory","svg.bt.4.l1":"Dict + VSA","svg.bt.4.l2":"80% -> 90%","svg.bt.4.l3":"all dimensions","svg.comp.method":"Method","svg.comp.learned":"Learned?","svg.comp.ternary":"Ternary?","svg.comp.year":"Year","svg.comp.ternaT":"TernaT","svg.comp.note":"First learned VSA reasoner","svg.hw.total":"Total: <100 KB","svg.hw.res":"Resonator","svg.hw.ctrl":"Controller","svg.hw.scorer":"ChainScorer","svg.hw.mem":"VSA Memory","svg.hw.targets":"Cortex-M0+ $0.50 / ESP32 / RISC-V / Arduino" },
+var i18nData = {  en: { "nav.abstract":"Abstract","nav.architecture":"Architecture","nav.results":"Results","nav.breakthroughs":"Breakthroughs","nav.hardware":"Hardware","nav.about":"About","nav.github":"GitHub","lang.btn":"EN \u25BE","hero.badge.v":"v1.0","hero.badge.tag":"Proprietary Technology","hero.title.1":"AI that reasons","hero.title.2":"over facts","hero.sub":"TernaT is the first learned neural reasoner that answers complex questions by chaining facts \u2014 with a <strong>90% success rate<\/strong> and a <strong>16 KB<\/strong> brain. No LLM. No GPU. No FPU. Fits on a <strong>$0.50 chip<\/strong>.","hero.btn.research":"Read the Research","hero.btn.github":"GitHub","stats.qa":"Exact Multi-Hop QA","stats.resonator":"Ternary Resonator","stats.accuracy":"1 &amp; 2-Hop Accuracy","stats.pipeline":"Total Pipeline","metrics.label":"Key Metrics","metrics.title":"Reasoning without an LLM.<br>Fits on any MCU.","metrics.sub":"The first learned neural reasoner that works without a language model \u2014 delivering multi-hop reasoning at microcontroller cost.","metrics.card1.label":"Exact Multi-Hop QA","metrics.card1.desc":"First learned neural reasoner to break through the accuracy ceiling of traditional VSA methods","metrics.card2.label":"Ternary Resonator","metrics.card2.desc":"Learned pattern matcher \u2014 replaces slow brute-force search","metrics.card3.label":"1 &amp; 2-Hop Accuracy","metrics.card3.desc":"Perfect precision on single and double inference steps","metrics.card4.label":"Total Pipeline","metrics.card4.desc":"Resonator + Controller + Scorer + VSA memory (~1.1 MB int8)","metrics.card5.label":"FPU / GPU Required","metrics.card5.desc":"Runs on $0.50 Cortex-M0+ MCUs","abstract.label":"Abstract","abstract.title":"Neural reasoning at<br>microcontroller scale.","abstract.sub":"A new approach to on-device AI that answers multi-step questions without a language model or GPU.","abstract.p1":"We present <strong>TernaT<\/strong>, the first learned neural reasoner that uses compact ternary weights to answer multi-step questions. Our system achieves <strong>90% exact multi-hop QA<\/strong> on a benchmark of 96 facts and 30 queries \u2014 without any LLM, GPU, or FPU.","abstract.p2":"Complete pipeline fits in <strong>&lt;100 KB<\/strong>. Hybrid exact+VSA memory resolves the accuracy ceiling, while counterexample training eliminates incorrect matches \u2014 achieving 0% false positives.","arch.label":"Architecture","arch.title":"Pipeline Architecture","arch.sub":"Hybrid exact+VSA memory with learned ternary components.","arch.caption":"TernaT Pipeline: hybrid exact+VSA memory with learned ternary components","results.label":"Results","results.title":"Multi-Hop QA Results","results.sub":"90% exact match \u2014 1-hop 100%, 2-hop 100%, 3-hop 70%.","results.caption":"Full system achieves 90% exact match","results.comp.title":"Component Sizes","results.comp.col.component":"Component","results.comp.col.params":"Parameters","results.comp.col.size":"Size","results.comp.col.deploy":"Deployment","results.comp.res":"TernMLResonator","results.comp.any":"Any MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA Memory","results.comp.m4":"Cortex-M4+","results.comp.total":"Total pipeline","results.comp.dollar":"$0.50 MCUs","bt.label":"Breakthroughs","bt.title":"Key Breakthroughs","bt.sub":"Four fundamental contributions.","bt.caption":"Four contributions in <100 KB","comp.label":"Comparison","comp.title":"Comparison with Prior Art","comp.sub":"First learned neural VSA reasoner.","hw.label":"Hardware","hw.title":"Hardware Efficiency","hw.sub":"38 KB for a complete AI pipeline with TernML.","hw.caption":"38 KB for a complete AI pipeline","about.label":"About","about.title":"Independent research.<br>Proprietary technology.","about.sub":"TernaT is an independent research project.","about.p1":"TernaT proves learned neural reasoning over facts is practical \u2014 achieving 90% exact multi-hop QA with a <100 KB pipeline on $0.50 microcontrollers. The NL parser understands plain English, including multi-word entities like Eiffel Tower.","about.p2":"Combined with TernML for perception (38 KB), TernaT forms a complete on-device AI pipeline with no LLM, no GPU, no FPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML Site","about.btn.doi":"Zenodo DOI","about.author.detail":"Independent researcher. Creator of TernaT and TernML.","about.badge.research":"Independent research","about.badge.first":"First learned VSA reasoner","about.badge.nohw":"No LLM / No GPU / No FPU","about.badge.size":"<100 KB total pipeline","about.badge.nl":"Hybrid NL parser (multi-word, 99.9%)","about.badge.vision":"Vision integration","cta.title":"Explore the research.","cta.sub":"TernaT is proprietary technology.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML Site","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML Site","footer.doi":"DOI","footer.rights":"Proprietary Technology \u2014 All Rights Reserved.","footer.legal":"TernaT and TernML are protected by applicable intellectual property laws.","svg.arch.question":"Question","svg.arch.nl":"NL Parser v2 (50+ patterns, neural, multi-word)","svg.arch.entpred":"entity + predicate","svg.arch.hybrid":"Hybrid Memory: exact dict + VSA fallback","svg.arch.store":"PredicateShardedStore","svg.arch.store2":"VSA memory by predicate","svg.arch.store3":"reduces interference","svg.arch.res":"TernMLResonator (16 KB)","svg.arch.ctrl":"FastController + ChainScorer","svg.arch.beam":"Beam search","svg.arch.answer":"Answer","svg.res.method":"Method","svg.res.overall":"Overall","svg.res.hop1":"1-hop","svg.res.hop2":"2-hop","svg.res.hop3":"3-hop","svg.res.vsa":"VSA direct query","svg.res.resonly":"Resonator only","svg.res.ctrlres":"Controller + Resonator","svg.res.ternaT":"TernaT (full)","svg.res.note":"96 facts, 30 queries","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Resonator","svg.res.lbl.ctrlres":"Ctrl+Res","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. Learned VSA Resonator","svg.bt.1.l1":"First learned cleanup","svg.bt.1.l2":"16 KB, 1.1ms","svg.bt.1.l3":"77s -> 1.1ms","svg.bt.2.title":"2. No False Positives","svg.bt.2.l1":"Counterexample training","svg.bt.2.l2":"1.3% -> 0%","svg.bt.2.l3":"zero false positives","svg.bt.3.title":"3. Multi-hop No LLM","svg.bt.3.l1":"Controller + beam search","svg.bt.3.l2":"90% exact","svg.bt.3.l3":"100/100/70%","svg.bt.4.title":"4. Hybrid Memory","svg.bt.4.l1":"Dict + VSA","svg.bt.4.l2":"80% -> 90%","svg.bt.4.l3":"all dimensions","svg.comp.method":"Method","svg.comp.learned":"Learned?","svg.comp.ternary":"Ternary?","svg.comp.year":"Year","svg.comp.ternaT":"TernaT","svg.comp.note":"First learned VSA reasoner","svg.hw.total":"Total: <100 KB","svg.hw.res":"Resonator","svg.hw.ctrl":"Controller","svg.hw.scorer":"ChainScorer","svg.hw.mem":"VSA Memory","svg.hw.targets":"Cortex-M0+ $0.50 / ESP32 / RISC-V / Arduino","papers.label":"Papers","papers.title":"Research Papers","papers.sub":"Publications on Zenodo.","papers.paper1":"TernaT: Learned Neural VSA Reasoner","papers.paper1.desc":"The first learned neural reasoner over VSA. 90% exact multi-hop QA, 16 KB ternary resonator.","papers.download":"Download Paper","papers.paper2":"TernML + TernaT Code Repository","papers.code.desc":"Complete codebase for TernML and TernaT.","papers.code":"Source Code","papers.code.note":"Restricted access — proprietary technology." },
 
-  ru: { "nav.abstract":"Аннотация","nav.architecture":"Архитектура","nav.results":"Результаты","nav.breakthroughs":"Прорывы","nav.hardware":"Оборудование","nav.about":"О проекте","nav.github":"GitHub","lang.btn":"RU в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Проприетарная технология","hero.title.1":"ИИ, который","hero.title.2":"мыслит фактами","hero.sub":"TernaT — первый обученный нейронный резонер, отвечающий на сложные вопросы цепочками фактов — с <strong>точностью 90%<\/strong> и <strong>16 КБ<\/strong>. Без LLM, GPU, FPU. На микросхеме за $0.50.","hero.btn.research":"Читать","hero.btn.github":"GitHub","stats.qa":"Многошаговый QA","stats.resonator":"Тернарный","stats.accuracy":"1 и 2 шага","stats.pipeline":"Весь пайплайн","metrics.label":"Метрики","metrics.title":"Без LLM.<br>На любом MCU.","metrics.sub":"Первый обученный резонер без языковой модели.","metrics.card1.label":"Многошаговый QA","metrics.card1.desc":"Прорыв точности VSA","metrics.card2.label":"Тернарный","metrics.card2.desc":"Замена перебора","metrics.card3.label":"1-2 шага","metrics.card3.desc":"100% точность","metrics.card4.label":"Пайплайн","metrics.card4.desc":"Резонатор + контроллер + скор","metrics.card5.label":"Без FPU/GPU","metrics.card5.desc":"Cortex-M0+ Р·Р° $0.50","abstract.label":"Аннотация","abstract.title":"Нейронные рассуждения<br>на микроконтроллере.","abstract.sub":"AI без LLM и GPU для многошаговых вопросов.","abstract.p1":"<strong>TernaT<\/strong> — первый резонер на тернарных весах. 90% точности, 96 фактов, 30 запросов — без LLM/GPU/FPU.","abstract.p2":"<strong>&lt;100 КБ<\/strong>. Гибридная память + контрпримеры: 0% ложных срабатываний.","arch.label":"Архитектура","arch.title":"Пайплайн","arch.sub":"Гибридная память и тернарные компоненты.","arch.caption":"Пайплайн TernaT","results.label":"Результаты","results.title":"Multi-Hop QA","results.sub":"90% — 100/100/70%","results.caption":"90% точных ответов","results.comp.title":"Компоненты","results.comp.col.component":"Компонент","results.comp.col.params":"Параметры","results.comp.col.size":"Размер","results.comp.col.deploy":"Развертывание","results.comp.res":"TernMLResonator","results.comp.any":"Любой MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA-память","results.comp.m4":"Cortex-M4+","results.comp.total":"Итого","results.comp.dollar":"$0.50","bt.label":"Прорывы","bt.title":"Прорывы","bt.sub":"4 вклада.","bt.caption":"4 вклада <100 КБ","comp.label":"Сравнение","comp.title":"Сравнение","comp.sub":"Первый обученный VSA-резонер.","hw.label":"Оборудование","hw.title":"Эффективность","hw.sub":"38 РљР' СЃ TernML.","hw.caption":"38 КБ для полного AI","about.label":"О проекте","about.title":"Независимое.<br>Проприетарное.","about.sub":"TernaT — независимый проект.","about.p1":"TernaT доказывает: нейронные рассуждения возможны на $0.50. 90% точности, NL-парсер понимает сущности из нескольких слов.","about.p2":"С TernML — полный AI без LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Независимый исследователь.","about.badge.research":"Независимое","about.badge.first":"Первый VSA","about.badge.nohw":"Без LLM/GPU/FPU","about.badge.size":"<100 РљР'","about.badge.nl":"NL-парсер","about.badge.vision":"Зрение","cta.title":"Изучите.","cta.sub":"Проприетарная технология.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Проприетарная технология.","footer.legal":"TernaT и TernML защищены.","svg.arch.question":"Р'РѕРїСЂРѕСЃ","svg.arch.nl":"NL-парсер v2","svg.arch.entpred":"сущность + предикат","svg.arch.hybrid":"Гибридная память","svg.arch.store":"PredicateShardedStore","svg.arch.store2":"По предикатам","svg.arch.store3":"меньше помех","svg.arch.res":"TernMLResonator","svg.arch.ctrl":"FastController + ChainScorer","svg.arch.beam":"РџРѕРёСЃРє","svg.arch.answer":"Ответ","svg.res.method":"Метод","svg.res.overall":"Общий","svg.res.hop1":"1 шаг","svg.res.hop2":"2 шага","svg.res.hop3":"3 шага","svg.res.vsa":"VSA запрос","svg.res.resonly":"Только резонатор","svg.res.ctrlres":"Контроллер + рез","svg.res.ternaT":"TernaT","svg.res.note":"96 фактов, 30 запросов","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Рез","svg.res.lbl.ctrlres":"Конт+Рез","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA-резонатор","svg.bt.1.l1":"Первый обученный","svg.bt.1.l2":"16 РљР'","svg.bt.1.l3":"77СЃ в†' 1.1РјСЃ","svg.bt.2.title":"2. Без ложных","svg.bt.2.l1":"Контрпримеры","svg.bt.2.l2":"1.3% в†' 0%","svg.bt.2.l3":"0% ЛС","svg.bt.3.title":"3. Без LLM","svg.bt.3.l1":"Контроллер","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Память","svg.bt.4.l1":"Словарь+VSA","svg.bt.4.l2":"80% в†' 90%","svg.bt.4.l3":"РІСЃРµ D","svg.comp.method":"Метод","svg.comp.learned":"Обучен?","svg.comp.ternary":"Тернарен?","svg.comp.year":"Год","svg.comp.ternaT":"TernaT","svg.comp.note":"Первый обученный","svg.hw.total":"<100 РљР'","svg.hw.res":"Резонатор","svg.hw.ctrl":"Контроллер","svg.hw.scorer":"ChainScorer","svg.hw.mem":"VSA","svg.hw.targets":"Cortex-M0+ / ESP32 / RISC-V" },
+  ru: { "nav.abstract":"Аннотация","nav.architecture":"Архитектура","nav.results":"Результаты","nav.breakthroughs":"Прорывы","nav.hardware":"Оборудование","nav.about":"О проекте","nav.github":"GitHub","lang.btn":"RU в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Проприетарная технология","hero.title.1":"ИИ, который","hero.title.2":"мыслит фактами","hero.sub":"TernaT — первый обученный нейронный резонер, отвечающий на сложные вопросы цепочками фактов — с <strong>точностью 90%<\/strong> и <strong>16 КБ<\/strong>. Без LLM, GPU, FPU. На микросхеме за $0.50.","hero.btn.research":"Читать","hero.btn.github":"GitHub","stats.qa":"Многошаговый QA","stats.resonator":"Тернарный","stats.accuracy":"1 и 2 шага","stats.pipeline":"Весь пайплайн","metrics.label":"Метрики","metrics.title":"Без LLM.<br>На любом MCU.","metrics.sub":"Первый обученный резонер без языковой модели.","metrics.card1.label":"Многошаговый QA","metrics.card1.desc":"Прорыв точности VSA","metrics.card2.label":"Тернарный","metrics.card2.desc":"Замена перебора","metrics.card3.label":"1-2 шага","metrics.card3.desc":"100% точность","metrics.card4.label":"Пайплайн","metrics.card4.desc":"Резонатор + контроллер + скор","metrics.card5.label":"Без FPU/GPU","metrics.card5.desc":"Cortex-M0+ Р·Р° $0.50","abstract.label":"Аннотация","abstract.title":"Нейронные рассуждения<br>на микроконтроллере.","abstract.sub":"AI без LLM и GPU для многошаговых вопросов.","abstract.p1":"<strong>TernaT<\/strong> — первый резонер на тернарных весах. 90% точности, 96 фактов, 30 запросов — без LLM/GPU/FPU.","abstract.p2":"<strong>&lt;100 КБ<\/strong>. Гибридная память + контрпримеры: 0% ложных срабатываний.","arch.label":"Архитектура","arch.title":"Пайплайн","arch.sub":"Гибридная память и тернарные компоненты.","arch.caption":"Пайплайн TernaT","results.label":"Результаты","results.title":"Multi-Hop QA","results.sub":"90% — 100/100/70%","results.caption":"90% точных ответов","results.comp.title":"Компоненты","results.comp.col.component":"Компонент","results.comp.col.params":"Параметры","results.comp.col.size":"Размер","results.comp.col.deploy":"Развертывание","results.comp.res":"TernMLResonator","results.comp.any":"Любой MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA-память","results.comp.m4":"Cortex-M4+","results.comp.total":"Итого","results.comp.dollar":"$0.50","bt.label":"Прорывы","bt.title":"Прорывы","bt.sub":"4 вклада.","bt.caption":"4 вклада <100 КБ","comp.label":"Сравнение","comp.title":"Сравнение","comp.sub":"Первый обученный VSA-резонер.","hw.label":"Оборудование","hw.title":"Эффективность","hw.sub":"38 РљР' СЃ TernML.","hw.caption":"38 КБ для полного AI","about.label":"О проекте","about.title":"Независимое.<br>Проприетарное.","about.sub":"TernaT — независимый проект.","about.p1":"TernaT доказывает: нейронные рассуждения возможны на $0.50. 90% точности, NL-парсер понимает сущности из нескольких слов.","about.p2":"С TernML — полный AI без LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Независимый исследователь.","about.badge.research":"Независимое","about.badge.first":"Первый VSA","about.badge.nohw":"Без LLM/GPU/FPU","about.badge.size":"<100 РљР'","about.badge.nl":"NL-парсер","about.badge.vision":"Зрение","cta.title":"Изучите.","cta.sub":"Проприетарная технология.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Проприетарная технология.","footer.legal":"TernaT и TernML защищены.","svg.arch.question":"Р'РѕРїСЂРѕСЃ","svg.arch.nl":"NL-парсер v2","svg.arch.entpred":"сущность + предикат","svg.arch.hybrid":"Гибридная память","svg.arch.store":"PredicateShardedStore","svg.arch.store2":"По предикатам","svg.arch.store3":"меньше помех","svg.arch.res":"TernMLResonator","svg.arch.ctrl":"FastController + ChainScorer","svg.arch.beam":"РџРѕРёСЃРє","svg.arch.answer":"Ответ","svg.res.method":"Метод","svg.res.overall":"Общий","svg.res.hop1":"1 шаг","svg.res.hop2":"2 шага","svg.res.hop3":"3 шага","svg.res.vsa":"VSA запрос","svg.res.resonly":"Только резонатор","svg.res.ctrlres":"Контроллер + рез","svg.res.ternaT":"TernaT","svg.res.note":"96 фактов, 30 запросов","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Рез","svg.res.lbl.ctrlres":"Конт+Рез","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA-резонатор","svg.bt.1.l1":"Первый обученный","svg.bt.1.l2":"16 РљР'","svg.bt.1.l3":"77СЃ в†' 1.1РјСЃ","svg.bt.2.title":"2. Без ложных","svg.bt.2.l1":"Контрпримеры","svg.bt.2.l2":"1.3% в†' 0%","svg.bt.2.l3":"0% ЛС","svg.bt.3.title":"3. Без LLM","svg.bt.3.l1":"Контроллер","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Память","svg.bt.4.l1":"Словарь+VSA","svg.bt.4.l2":"80% в†' 90%","svg.bt.4.l3":"РІСЃРµ D","svg.comp.method":"Метод","svg.comp.learned":"Обучен?","svg.comp.ternary":"Тернарен?","svg.comp.year":"Год","svg.comp.ternaT":"TernaT","svg.comp.note":"Первый обученный","svg.hw.total":"<100 РљР'","svg.hw.res":"Резонатор","svg.hw.ctrl":"Контроллер","svg.hw.scorer":"ChainScorer","svg.hw.mem":"VSA","svg.hw.targets":"Cortex-M0+ / ESP32 / RISC-V","papers.label":"Статьи","papers.title":"Научные статьи","papers.sub":"Публикации на Zenodo.","papers.paper1":"TernaT: Нейронный VSA-резонер","papers.paper1.desc":"Первый обученный нейронный резонер на VSA. 90% точности, 16 КБ тернарный резонатор.","papers.download":"Скачать","papers.paper2":"TernML + TernaT: Код","papers.code.desc":"Полный код TernML и TernaT.","papers.code":"Исходный код","papers.code.note":"Ограниченный доступ." },
 
-  uk: { "nav.abstract":"Анотація","nav.architecture":"Архітектура","nav.results":"Результати","nav.breakthroughs":"РџСЂРѕСЂРёРІРё","nav.hardware":"Обладнання","nav.about":"Про проєкт","nav.github":"GitHub","lang.btn":"UA в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Пропрієтарна технологія","hero.title.1":"РЁР†, СЏРєРёР№","hero.title.2":"мислить фактами","hero.sub":"TernaT — перший навчений нейронний резонер, що відповідає на складні питання ланцюжками фактів — <strong>90%<\/strong> і <strong>16 КБ<\/strong>. Без LLM/GPU/FPU.","hero.btn.research":"Читати","hero.btn.github":"GitHub","stats.qa":"Багатокроковий QA","stats.resonator":"Тернарний","stats.accuracy":"1-2 РєСЂРѕРєРё","stats.pipeline":"Пайплайн","metrics.label":"Метрики","metrics.title":"Без LLM.<br>На будь-якому MCU.","metrics.sub":"Перший навчений резонер.","metrics.card1.label":"QA","metrics.card1.desc":"РџСЂРѕСЂРёРІ VSA","metrics.card2.label":"Резонатор","metrics.card2.desc":"Заміна перебору","metrics.card3.label":"1-2 РєСЂРѕРєРё","metrics.card3.desc":"100%","metrics.card4.label":"Пайплайн","metrics.card4.desc":"Рез+Контр+Скор","metrics.card5.label":"Без FPU/GPU","metrics.card5.desc":"$0.50","abstract.label":"Анотація","abstract.title":"Нейронні міркування<br>на мікроконтролері.","abstract.sub":"AI на пристроях без LLM/GPU.","abstract.p1":"TernaT — перший резонер. 90%, 96 фактів.","abstract.p2":"<100 КБ. Гібридна пам'ять. 0% хибних.","arch.label":"Архітектура","arch.title":"Пайплайн","arch.sub":"Гібридна пам'ять.","arch.caption":"Пайплайн TernaT","results.label":"Результати","results.title":"Multi-Hop QA","results.sub":"90% — 100/100/70%","results.caption":"90%","results.comp.title":"Компоненти","results.comp.col.component":"Компонент","results.comp.col.params":"Параметри","results.comp.col.size":"Р РѕР·РјС–СЂ","results.comp.col.deploy":"Розгортання","results.comp.res":"TernMLResonator","results.comp.any":"MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA","results.comp.m4":"Cortex-M4+","results.comp.total":"Разом","results.comp.dollar":"$0.50","bt.label":"РџСЂРѕСЂРёРІРё","bt.title":"РџСЂРѕСЂРёРІРё","bt.sub":"4 вклади.","bt.caption":"<100 РљР'","comp.label":"РџРѕСЂС–РІРЅСЏРЅРЅСЏ","comp.title":"РџРѕСЂС–РІРЅСЏРЅРЅСЏ","comp.sub":"Перший навчений VSA.","hw.label":"Обладнання","hw.title":"Ефективність","hw.sub":"38 РљР'.","hw.caption":"38 РљР'","about.label":"Про проєкт","about.title":"Незалежне.<br>Пропрієтарне.","about.sub":"TernaT — незалежний проєкт.","about.p1":"TernaT доводить: 90% на $0.50. NL-парсер розуміє багатослівні сутності.","about.p2":"З TernML — без LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Дослідник.","about.badge.research":"Незалежне","about.badge.first":"Перший VSA","about.badge.nohw":"Без LLM/GPU","about.badge.size":"<100 РљР'","about.badge.nl":"NL-парсер","about.badge.vision":"Р—С–СЂ","cta.title":"Досліджуйте.","cta.sub":"Пропрієтарна технологія.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Пропрієтарна технологія.","footer.legal":"TernaT і TernML захищені.","svg.arch.question":"Питання","svg.arch.nl":"NL-парсер v2","svg.arch.entpred":"сутність+предикат","svg.arch.hybrid":"Гібридна пам'ять","svg.arch.store":"ShardedStore","svg.arch.store2":"По предикатах","svg.arch.store3":"менше перешкод","svg.arch.res":"Resonator 16KB","svg.arch.ctrl":"FastController+ChainScorer","svg.arch.beam":"Пошук","svg.arch.answer":"Р'С–РґРїРѕРІС–РґСЊ","svg.res.method":"Метод","svg.res.overall":"Загальний","svg.res.hop1":"1","svg.res.hop2":"2","svg.res.hop3":"3","svg.res.vsa":"VSA","svg.res.resonly":"Резонатор","svg.res.ctrlres":"Контр+Рез","svg.res.ternaT":"TernaT","svg.res.note":"96/30","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Рез","svg.res.lbl.ctrlres":"Рљ+Р ","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA-резонатор","svg.bt.1.l1":"Перший","svg.bt.1.l2":"16 РљР'","svg.bt.1.l3":"77СЃв†'1.1РјСЃ","svg.bt.2.title":"2. Без хибних","svg.bt.2.l1":"Контрприклади","svg.bt.2.l2":"1.3%в†'0%","svg.bt.2.l3":"0%","svg.bt.3.title":"3. Без LLM","svg.bt.3.l1":"Контролер","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Пам'ять","svg.bt.4.l1":"Словник+VSA","svg.bt.4.l2":"80%в†'90%","svg.bt.4.l3":"РІСЃС– D","svg.comp.method":"Метод","svg.comp.learned":"Навчений?","svg.comp.ternary":"Тернарний?","svg.comp.year":"Р С–Рє","svg.comp.ternaT":"TernaT","svg.comp.note":"Перший","svg.hw.total":"<100 РљР'","svg.hw.res":"Резонатор","svg.hw.ctrl":"Контролер","svg.hw.scorer":"ChainScorer","svg.hw.mem":"VSA","svg.hw.targets":"Cortex-M0+ / ESP32" },
+  uk: { "nav.abstract":"Анотація","nav.architecture":"Архітектура","nav.results":"Результати","nav.breakthroughs":"РџСЂРѕСЂРёРІРё","nav.hardware":"Обладнання","nav.about":"Про проєкт","nav.github":"GitHub","lang.btn":"UA в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Пропрієтарна технологія","hero.title.1":"РЁР†, СЏРєРёР№","hero.title.2":"мислить фактами","hero.sub":"TernaT — перший навчений нейронний резонер, що відповідає на складні питання ланцюжками фактів — <strong>90%<\/strong> і <strong>16 КБ<\/strong>. Без LLM/GPU/FPU.","hero.btn.research":"Читати","hero.btn.github":"GitHub","stats.qa":"Багатокроковий QA","stats.resonator":"Тернарний","stats.accuracy":"1-2 РєСЂРѕРєРё","stats.pipeline":"Пайплайн","metrics.label":"Метрики","metrics.title":"Без LLM.<br>На будь-якому MCU.","metrics.sub":"Перший навчений резонер.","metrics.card1.label":"QA","metrics.card1.desc":"РџСЂРѕСЂРёРІ VSA","metrics.card2.label":"Резонатор","metrics.card2.desc":"Заміна перебору","metrics.card3.label":"1-2 РєСЂРѕРєРё","metrics.card3.desc":"100%","metrics.card4.label":"Пайплайн","metrics.card4.desc":"Рез+Контр+Скор","metrics.card5.label":"Без FPU/GPU","metrics.card5.desc":"$0.50","abstract.label":"Анотація","abstract.title":"Нейронні міркування<br>на мікроконтролері.","abstract.sub":"AI на пристроях без LLM/GPU.","abstract.p1":"TernaT — перший резонер. 90%, 96 фактів.","abstract.p2":"<100 КБ. Гібридна пам'ять. 0% хибних.","arch.label":"Архітектура","arch.title":"Пайплайн","arch.sub":"Гібридна пам'ять.","arch.caption":"Пайплайн TernaT","results.label":"Результати","results.title":"Multi-Hop QA","results.sub":"90% — 100/100/70%","results.caption":"90%","results.comp.title":"Компоненти","results.comp.col.component":"Компонент","results.comp.col.params":"Параметри","results.comp.col.size":"Р РѕР·РјС–СЂ","results.comp.col.deploy":"Розгортання","results.comp.res":"TernMLResonator","results.comp.any":"MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA","results.comp.m4":"Cortex-M4+","results.comp.total":"Разом","results.comp.dollar":"$0.50","bt.label":"РџСЂРѕСЂРёРІРё","bt.title":"РџСЂРѕСЂРёРІРё","bt.sub":"4 вклади.","bt.caption":"<100 РљР'","comp.label":"РџРѕСЂС–РІРЅСЏРЅРЅСЏ","comp.title":"РџРѕСЂС–РІРЅСЏРЅРЅСЏ","comp.sub":"Перший навчений VSA.","hw.label":"Обладнання","hw.title":"Ефективність","hw.sub":"38 РљР'.","hw.caption":"38 РљР'","about.label":"Про проєкт","about.title":"Незалежне.<br>Пропрієтарне.","about.sub":"TernaT — незалежний проєкт.","about.p1":"TernaT доводить: 90% на $0.50. NL-парсер розуміє багатослівні сутності.","about.p2":"З TernML — без LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Дослідник.","about.badge.research":"Незалежне","about.badge.first":"Перший VSA","about.badge.nohw":"Без LLM/GPU","about.badge.size":"<100 РљР'","about.badge.nl":"NL-парсер","about.badge.vision":"Р—С–СЂ","cta.title":"Досліджуйте.","cta.sub":"Пропрієтарна технологія.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Пропрієтарна технологія.","footer.legal":"TernaT і TernML захищені.","svg.arch.question":"Питання","svg.arch.nl":"NL-парсер v2","svg.arch.entpred":"сутність+предикат","svg.arch.hybrid":"Гібридна пам'ять","svg.arch.store":"ShardedStore","svg.arch.store2":"По предикатах","svg.arch.store3":"менше перешкод","svg.arch.res":"Resonator 16KB","svg.arch.ctrl":"FastController+ChainScorer","svg.arch.beam":"Пошук","svg.arch.answer":"Р'С–РґРїРѕРІС–РґСЊ","svg.res.method":"Метод","svg.res.overall":"Загальний","svg.res.hop1":"1","svg.res.hop2":"2","svg.res.hop3":"3","svg.res.vsa":"VSA","svg.res.resonly":"Резонатор","svg.res.ctrlres":"Контр+Рез","svg.res.ternaT":"TernaT","svg.res.note":"96/30","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Рез","svg.res.lbl.ctrlres":"Рљ+Р ","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA-резонатор","svg.bt.1.l1":"Перший","svg.bt.1.l2":"16 РљР'","svg.bt.1.l3":"77СЃв†'1.1РјСЃ","svg.bt.2.title":"2. Без хибних","svg.bt.2.l1":"Контрприклади","svg.bt.2.l2":"1.3%в†'0%","svg.bt.2.l3":"0%","svg.bt.3.title":"3. Без LLM","svg.bt.3.l1":"Контролер","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Пам'ять","svg.bt.4.l1":"Словник+VSA","svg.bt.4.l2":"80%в†'90%","svg.bt.4.l3":"РІСЃС– D","svg.comp.method":"Метод","svg.comp.learned":"Навчений?","svg.comp.ternary":"Тернарний?","svg.comp.year":"Р С–Рє","svg.comp.ternaT":"TernaT","svg.comp.note":"Перший","svg.hw.total":"<100 РљР'","svg.hw.res":"Резонатор","svg.hw.ctrl":"Контролер","svg.hw.scorer":"ChainScorer","svg.hw.mem":"VSA","svg.hw.targets":"Cortex-M0+ / ESP32","papers.label":"Статті","papers.title":"Наукові статті","papers.sub":"Публікації на Zenodo.","papers.paper1":"TernaT: Нейронний VSA-резонер","papers.paper1.desc":"Перший навчений нейронний резонер на VSA. 90% точності, 16 КБ тернарний резонатор.","papers.download":"Завантажити","papers.paper2":"TernML + TernaT: Код","papers.code.desc":"Повний код TernML та TernaT.","papers.code":"Вихідний код","papers.code.note":"Обмежений доступ." },
 
   be: { "nav.abstract":"Анатацыя","nav.architecture":"Архітэктура","nav.results":"Вынікі","nav.breakthroughs":"Прарывы","nav.hardware":"Абсталяванне","nav.about":"Пра праект","nav.github":"GitHub","lang.btn":"BE в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Прапрыетарная тэхналогія","hero.title.1":"РЁР†, СЏРєС–","hero.title.2":"думае фактамі","hero.sub":"TernaT — першы навучаны нейронны разважальнік. 90%, 16 КБ. Без LLM/GPU/FPU.","hero.btn.research":"Чытаць","hero.btn.github":"GitHub","stats.qa":"Шматкрокавы QA","stats.resonator":"Тэрнарны","stats.accuracy":"1-2 РєСЂРѕРєС–","stats.pipeline":"Пайплайн","metrics.label":"Метрыкі","metrics.title":"Без LLM.<br>На любым MCU.","metrics.sub":"Першы навучаны.","metrics.card1.label":"QA","metrics.card1.desc":"Прарыў","metrics.card2.label":"Рэзанатар","metrics.card2.desc":"Замена","metrics.card3.label":"1-2","metrics.card3.desc":"100%","metrics.card4.label":"Пайплайн","metrics.card4.desc":"РџРѕСћРЅС‹","metrics.card5.label":"Без FPU/GPU","metrics.card5.desc":"$0.50","abstract.label":"Анатацыя","abstract.title":"Нейронныя разважанні<br>на мікракантролеры.","abstract.sub":"AI без LLM.","abstract.p1":"TernaT — першы. 90%.","abstract.p2":"<100 КБ. 0% хібных.","arch.label":"Архітэктура","arch.title":"Пайплайн","arch.sub":"Гібрыдная памяць.","arch.caption":"Пайплайн TernaT","results.label":"Вынікі","results.title":"Multi-Hop QA","results.sub":"90% — 100/100/70%","results.caption":"90%","results.comp.title":"Кампаненты","results.comp.col.component":"Кампанент","results.comp.col.params":"Параметры","results.comp.col.size":"Памер","results.comp.col.deploy":"Разгортванне","results.comp.res":"TernMLResonator","results.comp.any":"MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA","results.comp.m4":"Cortex-M4+","results.comp.total":"Разам","results.comp.dollar":"$0.50","bt.label":"Прарывы","bt.title":"Прарывы","bt.sub":"4.","bt.caption":"<100 РљР'","comp.label":"Параўнанне","comp.title":"Параўнанне","comp.sub":"Першы VSA.","hw.label":"Абсталяванне","hw.title":"Эфектыўнасць","hw.sub":"38 РљР'.","hw.caption":"38 РљР'","about.label":"Пра праект","about.title":"Незалежнае.<br>Прапрыетарнае.","about.sub":"Незалежны праект.","about.p1":"TernaT: 90% РЅР° $0.50.","about.p2":"З TernML — без LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Даследчык.","about.badge.research":"Незалежнае","about.badge.first":"Першы VSA","about.badge.nohw":"Без LLM/GPU","about.badge.size":"<100 РљР'","about.badge.nl":"NL","about.badge.vision":"Р—СЂРѕРє","cta.title":"Даследуйце.","cta.sub":"Прапрыетарнае.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Прапрыетарнае.","footer.legal":"Абаронена.","svg.arch.question":"Пытанне","svg.arch.nl":"NL-парсер","svg.arch.entpred":"сутнасць+прэдыкат","svg.arch.hybrid":"Гібрыд","svg.arch.store":"Store","svg.arch.store2":"Па прэдыкатах","svg.arch.store3":"менш перашкод","svg.arch.res":"Resonator","svg.arch.ctrl":"Ctrl+Scorer","svg.arch.beam":"Пошук","svg.arch.answer":"Адказ","svg.res.method":"Метад","svg.res.overall":"Агульны","svg.res.hop1":"1","svg.res.hop2":"2","svg.res.hop3":"3","svg.res.vsa":"VSA","svg.res.resonly":"Рэзанатар","svg.res.ctrlres":"Рљ+Р ","svg.res.ternaT":"TernaT","svg.res.note":"96/30","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Р СЌР·","svg.res.lbl.ctrlres":"Рљ+Р ","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA","svg.bt.1.l1":"Першы","svg.bt.1.l2":"16 РљР'","svg.bt.1.l3":"77СЃв†'1.1РјСЃ","svg.bt.2.title":"2. Без хібных","svg.bt.2.l1":"Контрпрыклады","svg.bt.2.l2":"1.3%в†'0%","svg.bt.2.l3":"0%","svg.bt.3.title":"3. Без LLM","svg.bt.3.l1":"Кантролер","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Памяць","svg.bt.4.l1":"Слоўнік+VSA","svg.bt.4.l2":"80%в†'90%","svg.bt.4.l3":"СѓСЃРµ D","svg.comp.method":"Метад","svg.comp.learned":"Навучаны?","svg.comp.ternary":"Тэрнарны?","svg.comp.year":"Год","svg.comp.ternaT":"TernaT","svg.comp.note":"Першы","svg.hw.total":"<100 РљР'","svg.hw.res":"Рэзанатар","svg.hw.ctrl":"Кантролер","svg.hw.scorer":"Scorer","svg.hw.mem":"VSA","svg.hw.targets":"M0+ / ESP32" },
 
-  pl: { "nav.abstract":"Abstrakt","nav.architecture":"Architektura","nav.results":"Wyniki","nav.breakthroughs":"Prze\u0142omy","nav.hardware":"Sprz\u0119t","nav.about":"O projekcie","nav.github":"GitHub","lang.btn":"PL в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Technologia autorska","hero.title.1":"SI, kt\u00f3ra","hero.title.2":"rozumuje faktami","hero.sub":"TernaT to pierwszy wyuczony rezoner neuronowy odpowiadaj\u0105cy na z\u0142o\u017cone pytania \u0142a\u0144cuchami fakt\u00f3w \u2014 z <strong>90%<\/strong> i <strong>16 KB<\/strong>. Bez LLM/GPU/FPU. Na uk\u0142adzie za $0.50.","hero.btn.research":"Czytaj","hero.btn.github":"GitHub","stats.qa":"Wieloetapowy QA","stats.resonator":"Rezonator","stats.accuracy":"1 i 2 etapy","stats.pipeline":"Ca\u0142y pipeline","metrics.label":"Metryki","metrics.title":"Bez LLM.<br>Na ka\u017cdym MCU.","metrics.sub":"Pierwszy wyuczony rezoner.","metrics.card1.label":"QA","metrics.card1.desc":"Prze\u0142om VSA","metrics.card2.label":"Rezonator","metrics.card2.desc":"Zast\u0119puje przeszukiwanie","metrics.card3.label":"1-2","metrics.card3.desc":"100%","metrics.card4.label":"Pipeline","metrics.card4.desc":"Pe\u0142ny","metrics.card5.label":"Bez FPU/GPU","metrics.card5.desc":"$0.50","abstract.label":"Abstrakt","abstract.title":"Rezonowanie neuronowe<br>na mikrokontrolerze.","abstract.sub":"AI bez LLM.","abstract.p1":"TernaT \u2014 pierwszy. 90%.","abstract.p2":"<100 KB. 0% fa\u0142szywych.","arch.label":"Architektura","arch.title":"Pipeline","arch.sub":"Pami\u0119\u0107 hybrydowa.","arch.caption":"Pipeline TernaT","results.label":"Wyniki","results.title":"Multi-Hop QA","results.sub":"90% \u2014 100/100/70%","results.caption":"90%","results.comp.title":"Komponenty","results.comp.col.component":"Komponent","results.comp.col.params":"Parametry","results.comp.col.size":"Rozmiar","results.comp.col.deploy":"Wdro\u017cenie","results.comp.res":"TernMLResonator","results.comp.any":"MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA","results.comp.m4":"Cortex-M4+","results.comp.total":"Razem","results.comp.dollar":"$0.50","bt.label":"Prze\u0142omy","bt.title":"Prze\u0142omy","bt.sub":"4.","bt.caption":"<100 KB","comp.label":"Por\u00f3wnanie","comp.title":"Por\u00f3wnanie","comp.sub":"Pierwszy VSA.","hw.label":"Sprz\u0119t","hw.title":"Efektywno\u015b\u0107","hw.sub":"38 KB.","hw.caption":"38 KB","about.label":"O projekcie","about.title":"Niezale\u017cne.<br>Autorskie.","about.sub":"Niezale\u017cny projekt.","about.p1":"TernaT: 90% na $0.50. NL rozumie wielowyrazowe encje.","about.p2":"Z TernML \u2014 bez LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Badacz.","about.badge.research":"Niezale\u017cne","about.badge.first":"Pierwszy VSA","about.badge.nohw":"Bez LLM/GPU","about.badge.size":"<100 KB","about.badge.nl":"NL parser","about.badge.vision":"Wizja","cta.title":"Odkrywaj.","cta.sub":"Technologia autorska.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Technologia autorska.","footer.legal":"TernaT i TernML chronione.","svg.arch.question":"Pytanie","svg.arch.nl":"NL-parser v2","svg.arch.entpred":"encja + predykat","svg.arch.hybrid":"Pami\u0119\u0107 hybrydowa","svg.arch.store":"ShardedStore","svg.arch.store2":"Wed\u0142ug predykat\u00f3w","svg.arch.store3":"mniej zak\u0142\u00f3ce\u0144","svg.arch.res":"Resonator","svg.arch.ctrl":"Ctrl+Scorer","svg.arch.beam":"Szukanie","svg.arch.answer":"Odpowied\u017a","svg.res.method":"Metoda","svg.res.overall":"Og\u00f3lny","svg.res.hop1":"1","svg.res.hop2":"2","svg.res.hop3":"3","svg.res.vsa":"VSA","svg.res.resonly":"Rezonator","svg.res.ctrlres":"Ctrl+Rez","svg.res.ternaT":"TernaT","svg.res.note":"96/30","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Rez","svg.res.lbl.ctrlres":"C+Rez","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA","svg.bt.1.l1":"Pierwszy","svg.bt.1.l2":"16 KB","svg.bt.1.l3":"77s\u21921.1ms","svg.bt.2.title":"2. Bez fa\u0142szywych","svg.bt.2.l1":"Kontrprzyk\u0142ady","svg.bt.2.l2":"1.3%\u21920%","svg.bt.2.l3":"0%","svg.bt.3.title":"3. Bez LLM","svg.bt.3.l1":"Kontroler","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Pami\u0119\u0107","svg.bt.4.l1":"S\u0142ownik+VSA","svg.bt.4.l2":"80%\u219290%","svg.bt.4.l3":"wszystkie D","svg.comp.method":"Metoda","svg.comp.learned":"Uczony?","svg.comp.ternary":"Ternary?","svg.comp.year":"Rok","svg.comp.ternaT":"TernaT","svg.comp.note":"Pierwszy","svg.hw.total":"<100 KB","svg.hw.res":"Rezonator","svg.hw.ctrl":"Kontroler","svg.hw.scorer":"Scorer","svg.hw.mem":"VSA","svg.hw.targets":"M0+ / ESP32" },
+  pl: { "nav.abstract":"Abstrakt","nav.architecture":"Architektura","nav.results":"Wyniki","nav.breakthroughs":"Prze\u0142omy","nav.hardware":"Sprz\u0119t","nav.about":"O projekcie","nav.github":"GitHub","lang.btn":"PL в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Technologia autorska","hero.title.1":"SI, kt\u00f3ra","hero.title.2":"rozumuje faktami","hero.sub":"TernaT to pierwszy wyuczony rezoner neuronowy odpowiadaj\u0105cy na z\u0142o\u017cone pytania \u0142a\u0144cuchami fakt\u00f3w \u2014 z <strong>90%<\/strong> i <strong>16 KB<\/strong>. Bez LLM/GPU/FPU. Na uk\u0142adzie za $0.50.","hero.btn.research":"Czytaj","hero.btn.github":"GitHub","stats.qa":"Wieloetapowy QA","stats.resonator":"Rezonator","stats.accuracy":"1 i 2 etapy","stats.pipeline":"Ca\u0142y pipeline","metrics.label":"Metryki","metrics.title":"Bez LLM.<br>Na ka\u017cdym MCU.","metrics.sub":"Pierwszy wyuczony rezoner.","metrics.card1.label":"QA","metrics.card1.desc":"Prze\u0142om VSA","metrics.card2.label":"Rezonator","metrics.card2.desc":"Zast\u0119puje przeszukiwanie","metrics.card3.label":"1-2","metrics.card3.desc":"100%","metrics.card4.label":"Pipeline","metrics.card4.desc":"Pe\u0142ny","metrics.card5.label":"Bez FPU/GPU","metrics.card5.desc":"$0.50","abstract.label":"Abstrakt","abstract.title":"Rezonowanie neuronowe<br>na mikrokontrolerze.","abstract.sub":"AI bez LLM.","abstract.p1":"TernaT \u2014 pierwszy. 90%.","abstract.p2":"<100 KB. 0% fa\u0142szywych.","arch.label":"Architektura","arch.title":"Pipeline","arch.sub":"Pami\u0119\u0107 hybrydowa.","arch.caption":"Pipeline TernaT","results.label":"Wyniki","results.title":"Multi-Hop QA","results.sub":"90% \u2014 100/100/70%","results.caption":"90%","results.comp.title":"Komponenty","results.comp.col.component":"Komponent","results.comp.col.params":"Parametry","results.comp.col.size":"Rozmiar","results.comp.col.deploy":"Wdro\u017cenie","results.comp.res":"TernMLResonator","results.comp.any":"MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA","results.comp.m4":"Cortex-M4+","results.comp.total":"Razem","results.comp.dollar":"$0.50","bt.label":"Prze\u0142omy","bt.title":"Prze\u0142omy","bt.sub":"4.","bt.caption":"<100 KB","comp.label":"Por\u00f3wnanie","comp.title":"Por\u00f3wnanie","comp.sub":"Pierwszy VSA.","hw.label":"Sprz\u0119t","hw.title":"Efektywno\u015b\u0107","hw.sub":"38 KB.","hw.caption":"38 KB","about.label":"O projekcie","about.title":"Niezale\u017cne.<br>Autorskie.","about.sub":"Niezale\u017cny projekt.","about.p1":"TernaT: 90% na $0.50. NL rozumie wielowyrazowe encje.","about.p2":"Z TernML \u2014 bez LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Badacz.","about.badge.research":"Niezale\u017cne","about.badge.first":"Pierwszy VSA","about.badge.nohw":"Bez LLM/GPU","about.badge.size":"<100 KB","about.badge.nl":"NL parser","about.badge.vision":"Wizja","cta.title":"Odkrywaj.","cta.sub":"Technologia autorska.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Technologia autorska.","footer.legal":"TernaT i TernML chronione.","svg.arch.question":"Pytanie","svg.arch.nl":"NL-parser v2","svg.arch.entpred":"encja + predykat","svg.arch.hybrid":"Pami\u0119\u0107 hybrydowa","svg.arch.store":"ShardedStore","svg.arch.store2":"Wed\u0142ug predykat\u00f3w","svg.arch.store3":"mniej zak\u0142\u00f3ce\u0144","svg.arch.res":"Resonator","svg.arch.ctrl":"Ctrl+Scorer","svg.arch.beam":"Szukanie","svg.arch.answer":"Odpowied\u017a","svg.res.method":"Metoda","svg.res.overall":"Og\u00f3lny","svg.res.hop1":"1","svg.res.hop2":"2","svg.res.hop3":"3","svg.res.vsa":"VSA","svg.res.resonly":"Rezonator","svg.res.ctrlres":"Ctrl+Rez","svg.res.ternaT":"TernaT","svg.res.note":"96/30","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Rez","svg.res.lbl.ctrlres":"C+Rez","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA","svg.bt.1.l1":"Pierwszy","svg.bt.1.l2":"16 KB","svg.bt.1.l3":"77s\u21921.1ms","svg.bt.2.title":"2. Bez fa\u0142szywych","svg.bt.2.l1":"Kontrprzyk\u0142ady","svg.bt.2.l2":"1.3%\u21920%","svg.bt.2.l3":"0%","svg.bt.3.title":"3. Bez LLM","svg.bt.3.l1":"Kontroler","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Pami\u0119\u0107","svg.bt.4.l1":"S\u0142ownik+VSA","svg.bt.4.l2":"80%\u219290%","svg.bt.4.l3":"wszystkie D","svg.comp.method":"Metoda","svg.comp.learned":"Uczony?","svg.comp.ternary":"Ternary?","svg.comp.year":"Rok","svg.comp.ternaT":"TernaT","svg.comp.note":"Pierwszy","svg.hw.total":"<100 KB","svg.hw.res":"Rezonator","svg.hw.ctrl":"Kontroler","svg.hw.scorer":"Scorer","svg.hw.mem":"VSA","svg.hw.targets":"M0+ / ESP32","papers.label":"Artykuły","papers.title":"Artykuły naukowe","papers.sub":"Publikacje na Zenodo.","papers.paper1":"TernaT: Neuronowy rezoner VSA","papers.paper1.desc":"Pierwszy wyuczony rezoner neuronowy VSA. 90% dokładności, 16 KB rezonator trójskładnikowy.","papers.download":"Pobierz","papers.paper2":"TernML + TernaT: Kod","papers.code.desc":"Pełny kod TernML i TernaT.","papers.code":"Kod źródłowy","papers.code.note":"Ograniczony dostęp." }
 
-  de: { "nav.abstract":"Zusammenfassung","nav.architecture":"Architektur","nav.results":"Ergebnisse","nav.breakthroughs":"Durchbr\u00fcche","nav.hardware":"Hardware","nav.about":"\u00dcber","nav.github":"GitHub","lang.btn":"DE в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Eigene Technologie","hero.title.1":"KI, die","hero.title.2":"mit Fakten denkt","hero.sub":"TernaT ist der erste gelernte neuronale Reasoner, der komplexe Fragen durch Faktenketten beantwortet \u2014 mit <strong>90%<\/strong> und <strong>16 KB<\/strong>. Kein LLM/GPU/FPU. Auf einem Chip f\u00fcr $0.50.","hero.btn.research":"Lesen","hero.btn.github":"GitHub","stats.qa":"Mehrschritt-QA","stats.resonator":"Resonator","stats.accuracy":"1-2 Schritte","stats.pipeline":"Gesamtpipeline","metrics.label":"Kennzahlen","metrics.title":"Ohne LLM.<br>Auf jedem MCU.","metrics.sub":"Erster gelernter Reasoner.","metrics.card1.label":"QA","metrics.card1.desc":"VSA-Durchbruch","metrics.card2.label":"Resonator","metrics.card2.desc":"Ersetzt Suche","metrics.card3.label":"1-2","metrics.card3.desc":"100%","metrics.card4.label":"Pipeline","metrics.card4.desc":"Komplett","metrics.card5.label":"Kein FPU/GPU","metrics.card5.desc":"$0.50","abstract.label":"Zusammenfassung","abstract.title":"Neuronales Denken<br>auf Mikrocontrollern.","abstract.sub":"KI ohne LLM/GPU.","abstract.p1":"TernaT \u2014 der erste. 90%.","abstract.p2":"<100 KB. 0% falsch.","arch.label":"Architektur","arch.title":"Pipeline","arch.sub":"Hybridspeicher.","arch.caption":"TernaT-Pipeline","results.label":"Ergebnisse","results.title":"Multi-Hop QA","results.sub":"90% \u2014 100/100/70%","results.caption":"90%","results.comp.title":"Komponenten","results.comp.col.component":"Komponente","results.comp.col.params":"Parameter","results.comp.col.size":"Gr\u00f6\u00dfe","results.comp.col.deploy":"Einsatz","results.comp.res":"TernMLResonator","results.comp.any":"MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA","results.comp.m4":"Cortex-M4+","results.comp.total":"Gesamt","results.comp.dollar":"$0.50","bt.label":"Durchbr\u00fcche","bt.title":"Durchbr\u00fcche","bt.sub":"4.","bt.caption":"<100 KB","comp.label":"Vergleich","comp.title":"Vergleich","comp.sub":"Erster VSA.","hw.label":"Hardware","hw.title":"Effizienz","hw.sub":"38 KB.","hw.caption":"38 KB","about.label":"\u00dcber","about.title":"Unabh\u00e4ngig.<br>Propriet\u00e4r.","about.sub":"Unabh\u00e4ngiges Projekt.","about.p1":"TernaT: 90% f\u00fcr $0.50. NL-Parser versteht mehrw\u00f6rtige Entit\u00e4ten.","about.p2":"Mit TernML \u2014 kein LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Forscher.","about.badge.research":"Unabh\u00e4ngig","about.badge.first":"Erster VSA","about.badge.nohw":"Kein LLM/GPU","about.badge.size":"<100 KB","about.badge.nl":"NL-Parser","about.badge.vision":"Vision","cta.title":"Entdecken.","cta.sub":"Eigene Technologie.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Eigene Technologie.","footer.legal":"TernaT und TernML gesch\u00fctzt.","svg.arch.question":"Frage","svg.arch.nl":"NL-Parser v2","svg.arch.entpred":"Entit\u00e4t+Pr\u00e4dikat","svg.arch.hybrid":"Hybridspeicher","svg.arch.store":"ShardedStore","svg.arch.store2":"Nach Pr\u00e4dikat","svg.arch.store3":"weniger St\u00f6rung","svg.arch.res":"Resonator","svg.arch.ctrl":"Ctrl+Scorer","svg.arch.beam":"Suche","svg.arch.answer":"Antwort","svg.res.method":"Methode","svg.res.overall":"Gesamt","svg.res.hop1":"1","svg.res.hop2":"2","svg.res.hop3":"3","svg.res.vsa":"VSA","svg.res.resonly":"Resonator","svg.res.ctrlres":"Ctrl+Res","svg.res.ternaT":"TernaT","svg.res.note":"96/30","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Res","svg.res.lbl.ctrlres":"C+Res","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA","svg.bt.1.l1":"Erster","svg.bt.1.l2":"16 KB","svg.bt.1.l3":"77s\u21921.1ms","svg.bt.2.title":"2. Keine Falschen","svg.bt.2.l1":"Gegenbeispiele","svg.bt.2.l2":"1.3%\u21920%","svg.bt.2.l3":"0%","svg.bt.3.title":"3. Ohne LLM","svg.bt.3.l1":"Controller","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Speicher","svg.bt.4.l1":"Dict+VSA","svg.bt.4.l2":"80%\u219290%","svg.bt.4.l3":"alle D","svg.comp.method":"Methode","svg.comp.learned":"Gelernt?","svg.comp.ternary":"Ternary?","svg.comp.year":"Jahr","svg.comp.ternaT":"TernaT","svg.comp.note":"Erster","svg.hw.total":"<100 KB","svg.hw.res":"Resonator","svg.hw.ctrl":"Controller","svg.hw.scorer":"Scorer","svg.hw.mem":"VSA","svg.hw.targets":"M0+ / ESP32" }
+  de: { "nav.abstract":"Zusammenfassung","nav.architecture":"Architektur","nav.results":"Ergebnisse","nav.breakthroughs":"Durchbr\u00fcche","nav.hardware":"Hardware","nav.about":"\u00dcber","nav.github":"GitHub","lang.btn":"DE в–ѕ","hero.badge.v":"v1.0","hero.badge.tag":"Eigene Technologie","hero.title.1":"KI, die","hero.title.2":"mit Fakten denkt","hero.sub":"TernaT ist der erste gelernte neuronale Reasoner, der komplexe Fragen durch Faktenketten beantwortet \u2014 mit <strong>90%<\/strong> und <strong>16 KB<\/strong>. Kein LLM/GPU/FPU. Auf einem Chip f\u00fcr $0.50.","hero.btn.research":"Lesen","hero.btn.github":"GitHub","stats.qa":"Mehrschritt-QA","stats.resonator":"Resonator","stats.accuracy":"1-2 Schritte","stats.pipeline":"Gesamtpipeline","metrics.label":"Kennzahlen","metrics.title":"Ohne LLM.<br>Auf jedem MCU.","metrics.sub":"Erster gelernter Reasoner.","metrics.card1.label":"QA","metrics.card1.desc":"VSA-Durchbruch","metrics.card2.label":"Resonator","metrics.card2.desc":"Ersetzt Suche","metrics.card3.label":"1-2","metrics.card3.desc":"100%","metrics.card4.label":"Pipeline","metrics.card4.desc":"Komplett","metrics.card5.label":"Kein FPU/GPU","metrics.card5.desc":"$0.50","abstract.label":"Zusammenfassung","abstract.title":"Neuronales Denken<br>auf Mikrocontrollern.","abstract.sub":"KI ohne LLM/GPU.","abstract.p1":"TernaT \u2014 der erste. 90%.","abstract.p2":"<100 KB. 0% falsch.","arch.label":"Architektur","arch.title":"Pipeline","arch.sub":"Hybridspeicher.","arch.caption":"TernaT-Pipeline","results.label":"Ergebnisse","results.title":"Multi-Hop QA","results.sub":"90% \u2014 100/100/70%","results.caption":"90%","results.comp.title":"Komponenten","results.comp.col.component":"Komponente","results.comp.col.params":"Parameter","results.comp.col.size":"Gr\u00f6\u00dfe","results.comp.col.deploy":"Einsatz","results.comp.res":"TernMLResonator","results.comp.any":"MCU","results.comp.ctrl":"FastController","results.comp.m7":"Cortex-M7+","results.comp.scorer":"ChainScorer","results.comp.vsa":"VSA","results.comp.m4":"Cortex-M4+","results.comp.total":"Gesamt","results.comp.dollar":"$0.50","bt.label":"Durchbr\u00fcche","bt.title":"Durchbr\u00fcche","bt.sub":"4.","bt.caption":"<100 KB","comp.label":"Vergleich","comp.title":"Vergleich","comp.sub":"Erster VSA.","hw.label":"Hardware","hw.title":"Effizienz","hw.sub":"38 KB.","hw.caption":"38 KB","about.label":"\u00dcber","about.title":"Unabh\u00e4ngig.<br>Propriet\u00e4r.","about.sub":"Unabh\u00e4ngiges Projekt.","about.p1":"TernaT: 90% f\u00fcr $0.50. NL-Parser versteht mehrw\u00f6rtige Entit\u00e4ten.","about.p2":"Mit TernML \u2014 kein LLM/GPU.","about.btn.github":"GitHub","about.btn.ternml":"TernML","about.btn.doi":"DOI","about.author.detail":"Forscher.","about.badge.research":"Unabh\u00e4ngig","about.badge.first":"Erster VSA","about.badge.nohw":"Kein LLM/GPU","about.badge.size":"<100 KB","about.badge.nl":"NL-Parser","about.badge.vision":"Vision","cta.title":"Entdecken.","cta.sub":"Eigene Technologie.","cta.github":"GitHub","cta.doi":"DOI","cta.ternml":"TernML","cta.ternmlsite":"TernML","footer.github":"GitHub","footer.ternml":"TernML","footer.ternmlsite":"TernML","footer.doi":"DOI","footer.rights":"Eigene Technologie.","footer.legal":"TernaT und TernML gesch\u00fctzt.","svg.arch.question":"Frage","svg.arch.nl":"NL-Parser v2","svg.arch.entpred":"Entit\u00e4t+Pr\u00e4dikat","svg.arch.hybrid":"Hybridspeicher","svg.arch.store":"ShardedStore","svg.arch.store2":"Nach Pr\u00e4dikat","svg.arch.store3":"weniger St\u00f6rung","svg.arch.res":"Resonator","svg.arch.ctrl":"Ctrl+Scorer","svg.arch.beam":"Suche","svg.arch.answer":"Antwort","svg.res.method":"Methode","svg.res.overall":"Gesamt","svg.res.hop1":"1","svg.res.hop2":"2","svg.res.hop3":"3","svg.res.vsa":"VSA","svg.res.resonly":"Resonator","svg.res.ctrlres":"Ctrl+Res","svg.res.ternaT":"TernaT","svg.res.note":"96/30","svg.res.lbl.vsa":"VSA","svg.res.lbl.res":"Res","svg.res.lbl.ctrlres":"C+Res","svg.res.lbl.ternaT":"TernaT","svg.bt.1.title":"1. VSA","svg.bt.1.l1":"Erster","svg.bt.1.l2":"16 KB","svg.bt.1.l3":"77s\u21921.1ms","svg.bt.2.title":"2. Keine Falschen","svg.bt.2.l1":"Gegenbeispiele","svg.bt.2.l2":"1.3%\u21920%","svg.bt.2.l3":"0%","svg.bt.3.title":"3. Ohne LLM","svg.bt.3.l1":"Controller","svg.bt.3.l2":"90%","svg.bt.3.l3":"100/100/70","svg.bt.4.title":"4. Speicher","svg.bt.4.l1":"Dict+VSA","svg.bt.4.l2":"80%\u219290%","svg.bt.4.l3":"alle D","svg.comp.method":"Methode","svg.comp.learned":"Gelernt?","svg.comp.ternary":"Ternary?","svg.comp.year":"Jahr","svg.comp.ternaT":"TernaT","svg.comp.note":"Erster","svg.hw.total":"<100 KB","svg.hw.res":"Resonator","svg.hw.ctrl":"Controller","svg.hw.scorer":"Scorer","svg.hw.mem":"VSA","svg.hw.targets":"M0+ / ESP32","papers.label":"Publikationen","papers.title":"Forschungspapiere","papers.sub":"Veröffentlichungen auf Zenodo.","papers.paper1":"TernaT: Neuraler VSA-Reasoner","papers.paper1.desc":"Der erste gelernte neuronale Reasoner über VSA. 90% Genauigkeit, 16 KB ternärer Resonator.","papers.download":"Herunterladen","papers.paper2":"TernML + TernaT: Code","papers.code.desc":"Vollständiger Code von TernML und TernaT.","papers.code":"Quellcode","papers.code.note":"Eingeschränkter Zugriff." }
 };
 
 function toggleLangDropdown() {
@@ -916,6 +1010,33 @@ function setLang(lang) {
   }, 300);
 }
 
+/* ≡≡≡ POPUP HELPERS ≡≡≡ */
+function showPopup(title, desc) {
+  document.getElementById('popupTitle').textContent = title;
+  document.getElementById('popupDesc').textContent = desc;
+  document.getElementById('popupOverlay').classList.add('show');
+}
+function closePopup() {
+  document.getElementById('popupOverlay').classList.remove('show');
+}
+
+/* ≡≡≡ PIPELINE DATA ≡≡≡ */
+var pipelineInfo = {
+  'block-question': { en:'Natural language question input (English).', ru:'Вопрос на естественном языке (английский).', uk:'Питання природною мовою (англійська).', be:'Пытанне на натуральнай мове (англійская).', pl:'Pytanie w języku naturalnym (angielski).', de:'Frage in natürlicher Sprache (Englisch).' },
+  'block-nl': { en:'NL Parser v2: Hybrid regex+neural parser. 50+ patterns, multi-word entities. 99.9% accuracy on known patterns.', ru:'NL Parser v2: Гибридный регулярный+нейронный парсер. 50+ паттернов, сущности из нескольких слов. 99.9% точность.', uk:'NL Parser v2: Гібридний регулярний+нейронний парсер. 50+ паттернів. 99.9% точність.', be:'NL Parser v2: Гібрыдны рэгулярны+нейронны парсер. 50+ патэрнаў. 99.9% дакладнасць.', pl:'NL Parser v2: Hybrydowy parser regex+neuronowy. 50+ wzorców. 99.9% dokładności.', de:'NL Parser v2: Hybrider Regex+Neural-Parser. 50+ Muster. 99.9% Genauigkeit.' },
+  'block-store': { en:'PredicateShardedStore: VSA memory organized by predicate to reduce interference between facts.', ru:'PredicateShardedStore: VSA-память с организацией по предикатам для уменьшения интерференции.', uk:'PredicateShardedStore: VSA-пам\'ять, організована за предикатами.', be:'PredicateShardedStore: VSA-памяць, арганізаваная па прэдыкатах.', pl:'PredicateShardedStore: Pamięć VSA zorganizowana według predykatów.', de:'PredicateShardedStore: VSA-Speicher nach Prädikaten organisiert.' },
+  'block-resonator': { en:'TernMLResonator: Learned ternary cleanup network. 16 KB, 65K params. Replaces brute-force O(n) search.', ru:'TernMLResonator: Обученная тернарная сеть очистки. 16 КБ, 65K параметров. Заменяет полный перебор.', uk:'TernMLResonator: Навчена тернарна мережа очищення. 16 КБ, 65K параметрів.', be:'TernMLResonator: Навучаная тэрнарная сетка ачысткі. 16 КБ, 65K параметраў.', pl:'TernMLResonator: Wyuczona sieć trójskładnikowa. 16 KB, 65K parametrów.', de:'TernMLResonator: Gelernter ternärer Bereinigungsnetzwerk. 16 KB, 65K Parameter.' },
+  'block-controller': { en:'FastController + ChainScorer: Directs multi-hop reasoning. Controller picks next step, Scorer scores chains. ~1 MB int8.', ru:'FastController + ChainScorer: Направляет многошаговое рассуждение. Контроллер выбирает следующий шаг. ~1 МБ int8.', uk:'FastController + ChainScorer: Скеровує багатокрокове міркування. ~1 МБ int8.', be:'FastController + ChainScorer: Накіроўвае шматкрокавае разважанне. ~1 МБ int8.', pl:'FastController + ChainScorer: Kieruje wieloetapowym rozumowaniem. ~1 MB int8.', de:'FastController + ChainScorer: Steuert mehrschrittiges Denken. ~1 MB int8.' },
+  'block-beam': { en:'Beam search (width 1-3): Explores multiple reasoning paths, picks highest-scoring chain.', ru:'Beam search (ширина 1-3): Исследует несколько путей рассуждения, выбирает лучший.', uk:'Beam search (ширина 1-3): Досліджує кілька шляхів міркування.', be:'Beam search (шырыня 1-3): Даследуе некалькі шляхоў разважання.', pl:'Beam search (szerokość 1-3): Bada wiele ścieżek rozumowania.', de:'Beam search (Breite 1-3): Erkundet mehrere Denkpfade.' },
+  'block-answer': { en:'Final answer: entity extracted from the highest-scoring chain. Exact match only.', ru:'Финальный ответ: сущность из цепочки с наивысшим баллом. Только точное совпадение.', uk:'Фінальна відповідь: сутність з найкращого ланцюжка.', be:'Фінальны адказ: сутнасць з найлепшага ланцужка.', pl:'Ostateczna odpowiedź: encja z najlepszego łańcucha.', de:'Endgültige Antwort: Entität aus der besten Kette.' }
+};
+
+function getPipelineDesc(blockId) {
+  var info = pipelineInfo[blockId];
+  if (!info) return '';
+  return info[i18nLang] || info.en;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('ternaT_lang');
   if (saved && i18nData[saved]) {
@@ -925,7 +1046,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   document.addEventListener('click', closeLangDropdown);
 
-  var els = document.querySelectorAll('.reveal,.reveal-alt,.reveal-rotate,.title-reveal');
+  /* ≡≡≡ REVEAL OBSERVER ≡≡≡ */
+  var els = document.querySelectorAll('.reveal,.reveal-alt,.reveal-rotate,.title-reveal,.section-fade,.section-fade-in');
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting) {
@@ -939,7 +1061,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!h || h === '#' || h === '') return;
     var s = document.querySelector(h);
     if (s) {
-      s.querySelectorAll('.reveal,.reveal-alt,.reveal-rotate,.title-reveal').forEach(function(e) {
+      s.querySelectorAll('.reveal,.reveal-alt,.reveal-rotate,.title-reveal,.section-fade,.section-fade-in').forEach(function(e) {
         e.classList.add('visible');
         obs.unobserve(e);
       });
@@ -950,17 +1072,221 @@ document.addEventListener('DOMContentLoaded', function() {
   if (location.hash) { rv(location.hash); }
   window.addEventListener('hashchange', function() { rv(location.hash); });
 
+  /* ≡≡≡ SCROLL PROGRESS + NAV + SCROLLTOP ≡≡≡ */
   var nav = document.getElementById('navbar');
+  var progressBar = document.getElementById('scrollProgress');
+  var scrollBtn = document.getElementById('scrollTopBtn');
   var ticking = false;
   window.addEventListener('scroll', function() {
     if (!ticking) {
       requestAnimationFrame(function() {
-        nav.classList.toggle('scrolled', window.scrollY > 50);
+        var st = window.scrollY;
+        var dh = document.documentElement.scrollHeight - window.innerHeight;
+        nav.classList.toggle('scrolled', st > 50);
+        if (progressBar) { progressBar.style.width = (dh > 0 ? Math.min(100, (st / dh) * 100) : 0) + '%'; }
+        if (scrollBtn) { scrollBtn.classList.toggle('show', st > 300); }
         ticking = false;
       });
       ticking = true;
     }
   });
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
+  /* ≡≡≡ SCROLL-SPY NAV ≡≡≡ */
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  var sections = [];
+  navLinks.forEach(function(a) {
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) sections.push({ el: a, target: t });
+  });
+  var spyTicking = false;
+  window.addEventListener('scroll', function() {
+    if (!spyTicking) {
+      requestAnimationFrame(function() {
+        var mid = window.innerHeight / 2;
+        var activeId = '';
+        sections.forEach(function(s) {
+          var r = s.target.getBoundingClientRect();
+          if (r.top < mid && r.bottom > 0) activeId = s.target.id;
+        });
+        navLinks.forEach(function(a) { a.classList.remove('active'); });
+        sections.forEach(function(s) {
+          if (s.target.id === activeId) s.el.classList.add('active');
+        });
+        spyTicking = false;
+      });
+      spyTicking = true;
+    }
+  });
+
+  /* ≡≡≡ PARTICLE CANVAS ≡≡≡ */
+  var canvas = document.getElementById('particleCanvas');
+  if (canvas) {
+    var hero = document.querySelector('.hero');
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var NUM = 80;
+    var animId;
+
+    function resizeCanvas() {
+      if (!hero) return;
+      var r = hero.getBoundingClientRect();
+      canvas.width = r.width;
+      canvas.height = r.height;
+    }
+
+    function initParticles() {
+      particles = [];
+      for (var i = 0; i < NUM; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          r: Math.random() * 2 + 1,
+          symbol: Math.random() > 0.5 ? 1 : (Math.random() > 0.5 ? -1 : 0)
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        var alpha = 0.3 + 0.4 * (p.r / 3);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,212,255,' + alpha + ')';
+        ctx.fill();
+        /* draw small ternary symbol near particle */
+        if (p.symbol !== undefined) {
+          ctx.fillStyle = 'rgba(123,47,247,' + (alpha * 0.4) + ')';
+          ctx.font = '6px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(p.symbol, p.x + p.r + 4, p.y);
+        }
+        /* draw connections */
+        for (var j = i + 1; j < particles.length; j++) {
+          var q = particles[j];
+          var dx = p.x - q.x;
+          var dy = p.y - q.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = 'rgba(0,212,255,' + ((1 - dist / 120) * 0.12) + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      animId = requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    initParticles();
+    drawParticles();
+  }
+
+  /* ≡≡≡ 3D TILT CARDS ≡≡≡ */
+  var tiltCards = document.querySelectorAll('.tilt-card');
+  tiltCards.forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      if ('ontouchstart' in window) return;
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = 'perspective(1000px) rotateX(' + (-y * 8) + 'deg) rotateY(' + (x * 8) + 'deg)';
+    });
+    card.addEventListener('mouseleave', function() {
+      if ('ontouchstart' in window) return;
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+  });
+
+  /* ≡≡≡ ANIMATED COUNTERS ≡≡≡ */
+  var counters = document.querySelectorAll('.count-num');
+  var counterObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var el = e.target;
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        if (isNaN(target)) { counterObs.unobserve(el); return; }
+        var prefix = el.getAttribute('data-prefix') || '';
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 1200;
+        var startTime = null;
+        function step(t) {
+          if (!startTime) startTime = t;
+          var progress = Math.min(1, (t - startTime) / duration);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var val = Math.round(eased * target);
+          el.textContent = prefix + val + suffix;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = prefix + target + suffix;
+          }
+        }
+        requestAnimationFrame(step);
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+  counters.forEach(function(c) { counterObs.observe(c); });
+
+  /* ≡≡≡ INTERACTIVE SVG PIPELINE ≡≡≡ */
+  var pipelineSvg = document.querySelector('#architecture .svg-wrap svg');
+  if (pipelineSvg) {
+    var blocks = pipelineSvg.querySelectorAll('rect[rx]');
+    var blockNames = ['block-question','block-nl','block-store','block-resonator','block-controller','block-beam','block-answer'];
+    blocks.forEach(function(rect, idx) {
+      if (idx >= blockNames.length) return;
+      var id = blockNames[idx];
+      rect.classList.add('pipeline-block');
+      rect.setAttribute('data-block', id);
+      rect.addEventListener('click', function() {
+        var desc = getPipelineDesc(id);
+        showPopup(id.replace('block-','').charAt(0).toUpperCase() + id.replace('block-','').slice(1), desc);
+      });
+      rect.addEventListener('mouseenter', function() {
+        if ('ontouchstart' in window) return;
+        rect.style.filter = 'brightness(1.3)';
+      });
+      rect.addEventListener('mouseleave', function() {
+        rect.style.filter = '';
+      });
+    });
+
+    /* flow animation: pulse blocks sequentially */
+    var flowIdx = 0;
+    var flowTimer = setInterval(function() {
+      blocks.forEach(function(b) { b.classList.remove('flow-pulse'); });
+      if (flowIdx < blocks.length) {
+        blocks[flowIdx].classList.add('flow-pulse');
+      }
+      flowIdx = (flowIdx + 1) % (blocks.length + 1);
+    }, 1800);
+  }
+
+  /* ≡≡≡ CLOSE POPUP ON OVERLAY CLICK ≡≡≡ */
+  var popupOverlay = document.getElementById('popupOverlay');
+  if (popupOverlay) {
+    popupOverlay.addEventListener('click', function(e) {
+      if (e.target === popupOverlay) closePopup();
+    });
+  }
 });
 </script>
 

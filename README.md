@@ -5,7 +5,7 @@
 # TernaT: CPU Neural Reasoner
 
 First learned neural reasoner over Vector-Symbolic Architecture with **discrete ternary weights** {-1, 0, +1}.  
-**90% exact multi-hop QA · 16 KB ternary resonator · <100 KB total · No LLM · No GPU**
+**90% exact multi-hop QA · 16 KB ternary resonator · ~1.1 MB total · No LLM · No GPU**
 
 ## Overview
 
@@ -40,10 +40,10 @@ Question (NL) → NL Parser v2 → (entity, predicate)
                     ├─ GraphKANResonator (16 KB, 65K ternary params)
                     │   Learned query cleanup, negative training
                     │
-                    ├─ FastController (<1 KB, 37K float params)
-                    │   BC-trained: (entity, goal) → next predicate
-                    │
-                    └─ ChainScorer (<1 KB, Transformer 2L/4H/128d)
+├─ FastController (610 KB int8, 624K params)
+│   BC-trained: (entity, goal) → next predicate
+│
+└─ ChainScorer (461 KB int8, 472K params, Transformer 2L/4H/128d)
                           Beam search (width 1-3) path scoring
                                   ↓
                            Answer (entity)
@@ -54,10 +54,10 @@ Question (NL) → NL Parser v2 → (entity, predicate)
 | Component | Parameters | Size | Deployment |
 |-----------|:----------:|:----:|:----------:|
 | GraphKANResonator | 65,536 ternary | **16 KB** | Any MCU |
-| FastController | 37,384 float | **<1 KB** | Any MCU |
-| ChainScorer | ~50,000 float | **<1 KB** | Any MCU |
+| FastController | 624,264 int8 | **~610 KB** | Cortex-M7+ |
+| ChainScorer | 471,553 int8 | **~461 KB** | Cortex-M7+ |
 | VSA Memory (96 facts) | D=1024 | ~44 KB | Cortex-M4+ |
-| **Total pipeline** | | **<100 KB** | **$0.50 MCUs** |
+| **Total pipeline** | | **~1.1 MB (int8)** | **ESP32-S3+** |
 
 ## Training
 
@@ -89,9 +89,9 @@ First learned neural VSA reasoner — all prior work is algorithmic, not learned
 | Target | Memory | Suitability |
 |--------|:------:|:-----------:|
 | Cortex-M0+ ($0.50 MCU) | 16 KB L1 | ✅ Resonator fits |
-| ESP32-S3 | 512 KB SRAM | ✅ Full pipeline |
-| RISC-V GD32V | 32 KB | ✅ Core components |
-| Smartwatch DSP | 128 KB | ✅ Full pipeline |
+| Cortex-M7 (STM32H7) | 2 MB flash / 1 MB SRAM | ✅ Full pipeline |
+| ESP32-S3 | 16 MB flash / 512 KB SRAM | ✅ Full pipeline |
+| RISC-V GD32V | 32 KB | ✅ Resonator + Controller |
 
 ## Status
 

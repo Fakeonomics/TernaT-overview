@@ -97,4 +97,4 @@ First learned neural VSA reasoner — all prior work is algorithmic, not learned
 
 Proprietary technology — All Rights Reserved.  
 Codebase is private. [Full paper](https://fakeonomics.github.io/TernaT-overview/) available.  
-For licensing inquiries, contact via GitHub.
+Contact: [Telegram](https://t.me/fakeonomics) · [Email](mailto:uv20817@gmail.com)

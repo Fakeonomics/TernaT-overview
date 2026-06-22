@@ -573,37 +573,37 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
           </defs>
           <rect x="0" y="0" width="720" height="400" rx="20" fill="rgba(255,255,255,0.04)"/>
 
-          <rect x="230" y="20" width="260" height="40" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(230,215,195,0.15)" stroke-width="1.5"/>
+          <rect x="230" y="20" width="260" height="40" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(230,215,195,0.15)" stroke-width="1.5" data-block="block-question"/>
           <text x="360" y="46" text-anchor="middle" fill="#ece6de" font-size="14" font-weight="600"><tspan data-i18n="svg.arch.question">Question</tspan></text>
 
           <path d="M 360 60 L 360 85" stroke="#736b60" stroke-width="2" marker-end="url(#arrow)"/>
 
-          <rect x="230" y="85" width="260" height="40" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(230,215,195,0.15)" stroke-width="1.5"/>
+          <rect x="230" y="85" width="260" height="40" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(230,215,195,0.15)" stroke-width="1.5" data-block="block-nl"/>
           <text x="360" y="110" text-anchor="middle" fill="#a89e92" font-size="12" font-weight="500"><tspan data-i18n="svg.arch.nl">NL Parser v2 (50+ patterns, neural, multi-word, 99.9%)</tspan></text>
 
           <path d="M 360 125 L 360 150" stroke="#736b60" stroke-width="2" marker-end="url(#arrow)"/>
 
           <text x="360" y="145" text-anchor="middle" fill="#736b60" font-size="11"><tspan data-i18n="svg.arch.entpred">entity + predicate</tspan></text>
 
-          <rect x="70" y="160" width="580" height="140" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(230,215,195,0.15)" stroke-width="1.5"/>
+          <rect x="70" y="160" width="580" height="140" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(230,215,195,0.15)" stroke-width="1.5" data-block="block-hybrid"/>
           <text x="360" y="185" text-anchor="middle" fill="#ece6de" font-size="14" font-weight="600"><tspan data-i18n="svg.arch.hybrid">Hybrid Memory: exact dict + VSA fallback</tspan></text>
 
           <line x1="90" y1="195" x2="630" y2="195" stroke="rgba(230,215,195,0.08)" stroke-width="1"/>
 
-          <rect x="90" y="205" width="260" height="80" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(230,215,195,0.1)" stroke-width="1"/>
+          <rect x="90" y="205" width="260" height="80" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(230,215,195,0.1)" stroke-width="1" data-block="block-store"/>
           <text x="220" y="228" text-anchor="middle" fill="#a89e92" font-size="12" font-weight="500"><tspan data-i18n="svg.arch.store">PredicateShardedStore</tspan></text>
           <text x="220" y="246" text-anchor="middle" fill="#736b60" font-size="10"><tspan data-i18n="svg.arch.store2">VSA memory, organized by predicate</tspan></text>
           <text x="220" y="262" text-anchor="middle" fill="#736b60" font-size="10"><tspan data-i18n="svg.arch.store3">reduces interference between facts</tspan></text>
 
-          <rect x="370" y="205" width="260" height="38" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(230,215,195,0.08)" stroke-width="1"/>
+          <rect x="370" y="205" width="260" height="38" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(230,215,195,0.08)" stroke-width="1" data-block="block-resonator"/>
           <text x="500" y="229" text-anchor="middle" fill="#a89e92" font-size="11"><tspan data-i18n="svg.arch.res">TernMLResonator (16 KB ternary)</tspan></text>
 
-          <rect x="370" y="250" width="260" height="35" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(230,215,195,0.08)" stroke-width="1"/>
+          <rect x="370" y="250" width="260" height="35" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(230,215,195,0.08)" stroke-width="1" data-block="block-controller"/>
           <text x="500" y="272" text-anchor="middle" fill="#a89e92" font-size="10"><tspan data-i18n="svg.arch.ctrl">FastController (610 KB) + ChainScorer (461 KB)</tspan></text>
 
           <path d="M 360 300 L 360 330" stroke="#736b60" stroke-width="2" marker-end="url(#arrow)"/>
 
-          <rect x="230" y="330" width="260" height="40" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(201,149,74,0.2)" stroke-width="2"/>
+          <rect x="230" y="330" width="260" height="40" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(201,149,74,0.2)" stroke-width="2" data-block="block-beam"/>
           <text x="360" y="355" text-anchor="middle" fill="#ece6de" font-size="13" font-weight="600"><tspan data-i18n="svg.arch.beam">Beam search (width 1-3)</tspan></text>
 
           <path d="M 360 370 L 360 390" stroke="#736b60" stroke-width="2" marker-end="url(#arrow)"/>
@@ -1026,6 +1026,7 @@ var pipelineInfo = {
   'block-nl': { en:'NL Parser v2: Hybrid regex+neural parser. 50+ patterns, multi-word entities. 99.9% accuracy on known patterns.', ru:'NL Parser v2: Гибридный регулярный+нейронный парсер. 50+ паттернов, сущности из нескольких слов. 99.9% точность.', uk:'NL Parser v2: Гібридний регулярний+нейронний парсер. 50+ паттернів. 99.9% точність.', be:'NL Parser v2: Гібрыдны рэгулярны+нейронны парсер. 50+ патэрнаў. 99.9% дакладнасць.', pl:'NL Parser v2: Hybrydowy parser regex+neuronowy. 50+ wzorców. 99.9% dokładności.', de:'NL Parser v2: Hybrider Regex+Neural-Parser. 50+ Muster. 99.9% Genauigkeit.' },
   'block-store': { en:'PredicateShardedStore: VSA memory organized by predicate to reduce interference between facts.', ru:'PredicateShardedStore: VSA-память с организацией по предикатам для уменьшения интерференции.', uk:'PredicateShardedStore: VSA-пам\'ять, організована за предикатами.', be:'PredicateShardedStore: VSA-памяць, арганізаваная па прэдыкатах.', pl:'PredicateShardedStore: Pamięć VSA zorganizowana według predykatów.', de:'PredicateShardedStore: VSA-Speicher nach Prädikaten organisiert.' },
   'block-resonator': { en:'TernMLResonator: Learned ternary cleanup network. 16 KB, 65K params. Replaces brute-force O(n) search.', ru:'TernMLResonator: Обученная тернарная сеть очистки. 16 КБ, 65K параметров. Заменяет полный перебор.', uk:'TernMLResonator: Навчена тернарна мережа очищення. 16 КБ, 65K параметрів.', be:'TernMLResonator: Навучаная тэрнарная сетка ачысткі. 16 КБ, 65K параметраў.', pl:'TernMLResonator: Wyuczona sieć trójskładnikowa. 16 KB, 65K parametrów.', de:'TernMLResonator: Gelernter ternärer Bereinigungsnetzwerk. 16 KB, 65K Parameter.' },
+  'block-hybrid': { en:'Hybrid Memory: exact dictionary for known facts + VSA fallback for novel queries. Best of both worlds.', ru:'Гибридная память: точный словарь для известных фактов + VSA для новых запросов.', uk:'Гібридна пам\'ять: точний словник для відомих фактів + VSA для нових запитів.', be:'Гібрыдная памяць: дакладны слоўнік для вядомых фактаў + VSA для новых запытаў.', pl:'Pamięć hybrydowa: dokładny słownik dla znanych faktów + VSA dla nowych zapytań.', de:'Hybridspeicher: genaues Wörterbuch für bekannte Fakten + VSA für neue Anfragen.' },
   'block-controller': { en:'FastController + ChainScorer: Directs multi-hop reasoning. Controller picks next step, Scorer scores chains. ~1 MB int8.', ru:'FastController + ChainScorer: Направляет многошаговое рассуждение. Контроллер выбирает следующий шаг. ~1 МБ int8.', uk:'FastController + ChainScorer: Скеровує багатокрокове міркування. ~1 МБ int8.', be:'FastController + ChainScorer: Накіроўвае шматкрокавае разважанне. ~1 МБ int8.', pl:'FastController + ChainScorer: Kieruje wieloetapowym rozumowaniem. ~1 MB int8.', de:'FastController + ChainScorer: Steuert mehrschrittiges Denken. ~1 MB int8.' },
   'block-beam': { en:'Beam search (width 1-3): Explores multiple reasoning paths, picks highest-scoring chain.', ru:'Beam search (ширина 1-3): Исследует несколько путей рассуждения, выбирает лучший.', uk:'Beam search (ширина 1-3): Досліджує кілька шляхів міркування.', be:'Beam search (шырыня 1-3): Даследуе некалькі шляхоў разважання.', pl:'Beam search (szerokość 1-3): Bada wiele ścieżek rozumowania.', de:'Beam search (Breite 1-3): Erkundet mehrere Denkpfade.' },
   'block-answer': { en:'Final answer: entity extracted from the highest-scoring chain. Exact match only.', ru:'Финальный ответ: сущность из цепочки с наивысшим баллом. Только точное совпадение.', uk:'Фінальна відповідь: сутність з найкращого ланцюжка.', be:'Фінальны адказ: сутнасць з найлепшага ланцужка.', pl:'Ostateczna odpowiedź: encja z najlepszego łańcucha.', de:'Endgültige Antwort: Entität aus der besten Kette.' }
@@ -1249,13 +1250,10 @@ document.addEventListener('DOMContentLoaded', function() {
   /* ≡≡≡ INTERACTIVE SVG PIPELINE ≡≡≡ */
   var pipelineSvg = document.querySelector('#architecture .svg-wrap svg');
   if (pipelineSvg) {
-    var blocks = pipelineSvg.querySelectorAll('rect[rx]');
-    var blockNames = ['block-question','block-nl','block-store','block-resonator','block-controller','block-beam','block-answer'];
-    blocks.forEach(function(rect, idx) {
-      if (idx >= blockNames.length) return;
-      var id = blockNames[idx];
+    var blocks = pipelineSvg.querySelectorAll('[data-block]');
+    blocks.forEach(function(rect) {
+      var id = rect.getAttribute('data-block');
       rect.classList.add('pipeline-block');
-      rect.setAttribute('data-block', id);
       rect.addEventListener('click', function() {
         var desc = getPipelineDesc(id);
         showPopup(id.replace('block-','').charAt(0).toUpperCase() + id.replace('block-','').slice(1), desc);
@@ -1270,13 +1268,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* flow animation: pulse blocks sequentially */
+    var flowBlocks = pipelineSvg.querySelectorAll('[data-block]');
     var flowIdx = 0;
     var flowTimer = setInterval(function() {
-      blocks.forEach(function(b) { b.classList.remove('flow-pulse'); });
-      if (flowIdx < blocks.length) {
-        blocks[flowIdx].classList.add('flow-pulse');
+      flowBlocks.forEach(function(b) { b.classList.remove('flow-pulse'); });
+      if (flowIdx < flowBlocks.length) {
+        flowBlocks[flowIdx].classList.add('flow-pulse');
       }
-      flowIdx = (flowIdx + 1) % (blocks.length + 1);
+      flowIdx = (flowIdx + 1) % (flowBlocks.length + 1);
     }, 1800);
   }
 

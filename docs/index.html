@@ -391,7 +391,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
 .nav-links a.active{color:var(--emerald)!important}
 .nav-links a.active::after{width:100%!important;background:var(--emerald)!important;box-shadow:0 0 8px var(--emerald-glow)}
 /* === PARTICLE CANVAS === */
-#particleCanvas{position:absolute;inset:0;z-index:0;pointer-events:none;display:block}
+/* removed: particleCanvas */
 /* === SMOOTH SECTION TRANSITIONS === */
 .section-fade{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .section-fade.visible{opacity:1;transform:translateY(0)}
@@ -482,7 +482,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
 @media(prefers-reduced-motion:reduce){
   .reveal,.reveal-alt,.reveal-rotate,.reveal.visible,.reveal-alt.visible,.reveal-rotate.visible,.section-fade,.section-fade-in,.section-fade.visible,.section-fade-in.visible{transform:none!important;opacity:1!important;transition:none!important}
   .title-reveal,.title-reveal.visible{color:var(--text)!important;transition:none!important}
-  .ambient-bg,.ambient-bg .orb,.hero-bg .grain,.metric-card,.paper-card,.hero-badge,#particleCanvas{animation:none!important;transition:none!important}
+  .ambient-bg,.ambient-bg .orb,.hero-bg .grain,.metric-card,.paper-card,.hero-badge{animation:none!important;transition:none!important}
   #scrollProgress{transition:none!important}
   .pipeline-block{transition:none!important;filter:none!important}
   .nav-links a::after{transition:none!important}
@@ -556,7 +556,7 @@ footer .legal{font-size:12px;color:var(--text-dimmer);margin-top:4px;line-height
     <img src="arch_diagram.jpg" alt="" aria-hidden="true" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6">
     <div class="overlay"></div>
     <div class="grain"></div>
-    <canvas id="particleCanvas"></canvas>
+    <!-- particles removed -->
   </div>
 
   <div class="container">
@@ -1200,106 +1200,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  /* ??? PARTICLE CANVAS ??? */
-  var canvas = document.getElementById('particleCanvas');
-  if (canvas) {
-    var hero = document.querySelector('.hero');
-    var ctx = canvas.getContext('2d');
-    var particles = [];
-    var NUM = 50;
-    var CONN_DIST = 80;
-    var animId;
-    var frameCount = 0;
-
-    function checkFrameRate() {
-      var lastTime = performance.now();
-      var frames = 0;
-      function poll(t) {
-        frames++;
-        if (t - lastTime < 1000) {
-          requestAnimationFrame(poll);
-        } else {
-          var fps = frames;
-          if (fps < 30 && NUM > 20) {
-            NUM = Math.max(20, NUM - 10);
-            initParticles();
-          }
-        }
-      }
-      requestAnimationFrame(poll);
-    }
-
-    function resizeCanvas() {
-      if (!hero) return;
-      var r = hero.getBoundingClientRect();
-      canvas.width = r.width;
-      canvas.height = r.height;
-    }
-
-    function initParticles() {
-      particles = [];
-      for (var i = 0; i < NUM; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.6,
-          vy: (Math.random() - 0.5) * 0.6,
-          r: Math.random() * 2 + 1,
-          symbol: Math.random() > 0.5 ? 1 : (Math.random() > 0.5 ? -1 : 0)
-        });
-      }
-    }
-
-    function drawParticles() {
-      frameCount++;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (var i = 0; i < particles.length; i++) {
-        var p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-        var alpha = 0.3 + 0.4 * (p.r / 3);
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(16,185,129,' + alpha + ')';
-        ctx.fill();
-        if (p.symbol !== undefined) {
-          ctx.fillStyle = 'rgba(16,185,129,' + (alpha * 0.4) + ')';
-          ctx.font = '6px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(p.symbol, p.x + p.r + 4, p.y);
-        }
-        /* draw connections every other frame */
-        if (frameCount % 2 === 0) {
-          for (var j = i + 1; j < particles.length; j++) {
-            var q = particles[j];
-            var dx = p.x - q.x;
-            var dy = p.y - q.y;
-            var dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < CONN_DIST) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(q.x, q.y);
-              ctx.strokeStyle = 'rgba(16,185,129,' + ((1 - dist / CONN_DIST) * 0.12) + ')';
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-        }
-      }
-      animId = requestAnimationFrame(drawParticles);
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    initParticles();
-    drawParticles();
-    checkFrameRate();
-  }
+  /* PARTICLE CANVAS removed */
 
   /* ??? 3D TILT CARDS ??? */
   var tiltCards = document.querySelectorAll('.tilt-card');

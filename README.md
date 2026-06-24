@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20752580.svg)](https://doi.org/10.5281/zenodo.20752580) [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)]() [![TernaT Site](https://img.shields.io/badge/TernaT-Live%20Site-228b22?style=for-the-badge)](https://fakeonomics.github.io/TernaT-overview/) [![GraphKAN](https://img.shields.io/badge/GraphKAN-Overview-blue?style=for-the-badge)](https://fakeonomics.github.io/graphkan-overview/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20804938.svg)](https://doi.org/10.5281/zenodo.20804938) [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)]() [![TernaT Site](https://img.shields.io/badge/TernaT-Live%20Site-10b981?style=for-the-badge)](https://fakeonomics.github.io/TernaT-overview/)
 
 ---
 
@@ -61,7 +61,7 @@ Question (NL) → NL Parser v2 → (entity, predicate)
 
 ## Training
 
-4-phase QAT pipeline (same as GraphKAN):
+4-phase QAT pipeline (same as TernML):
 
 ```
 Phase 1: Float clamp to range
@@ -96,5 +96,5 @@ First learned neural VSA reasoner — all prior work is algorithmic, not learned
 ## Status
 
 Proprietary technology — All Rights Reserved.  
-Codebase is private. [Full paper](https://fakeonomics.github.io/TernaT-overview/) available.  
+Codebase is private. [Full paper](https://doi.org/10.5281/zenodo.20804938) available.  
 Contact: [Telegram](https://t.me/fakeonomics) · [Email](mailto:uv20817@gmail.com)
